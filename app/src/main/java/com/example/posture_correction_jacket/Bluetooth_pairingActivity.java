@@ -70,11 +70,16 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter(); // 블루투스 어댑터를 디폴트 어댑터로 설정
 
         if(bluetoothAdapter == null) { // 디바이스가 블루투스를 지원하지 않을 때
-            // 여기에 처리 할 코드를 작성하세요.
+
+
         }
         else { // 디바이스가 블루투스를 지원 할 때
+
             if(bluetoothAdapter.isEnabled()) { // 블루투스가 활성화 상태 (기기에 블루투스가 켜져있음)
                 selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
+                // 페어링시 다음 화면으로 넘어갑니다.
+                Intent intent2 = new Intent(Bluetooth_pairingActivity.this, Main_menuActivity.class);
+                startActivity(intent2);
             }
             else { // 블루투스가 비 활성화 상태 (기기에 블루투스가 꺼져있음)
                 // 블루투스를 활성화 하기 위한 다이얼로그 출력
@@ -102,6 +107,8 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
     }
 
     public void selectBluetoothDevice() {
+
+
         // 이미 페어링 되어있는 블루투스 기기를 찾습니다.
         devices = bluetoothAdapter.getBondedDevices();
         // 페어링 된 디바이스의 크기를 저장
