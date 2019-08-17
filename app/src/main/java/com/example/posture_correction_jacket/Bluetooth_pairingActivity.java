@@ -70,6 +70,10 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter(); // 블루투스 어댑터를 디폴트 어댑터로 설정
 
         if(bluetoothAdapter == null) { // 디바이스가 블루투스를 지원하지 않을 때
+            //뒤로가게 만들기
+
+            Intent intent = new Intent(Bluetooth_pairingActivity.this, MainActivity.class);
+            startActivity(intent);
 
 
         }
@@ -100,6 +104,10 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
                     selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
                 }
                 else { // '취소'를 눌렀을 때
+
+                    //뒤로가게 만들기
+                    Intent intent = new Intent(Bluetooth_pairingActivity.this, MainActivity.class);
+                    startActivity(intent);
                     // 여기에 처리 할 코드를 작성하세요.
                 }
                 break;
