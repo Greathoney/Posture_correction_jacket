@@ -54,8 +54,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/menu3_msg"
-        app:layout_constraintStart_toStartOf="@+id/menu2"
-        app:layout_constraintTop_toBottomOf="@+id/menu2" />
+        app:layout_constraintStart_toStartOf="@+id/menu4"
+        app:layout_constraintTop_toBottomOf="@+id/menu4" />
 
     <TextView
         android:id="@+id/sensor_state"
@@ -63,8 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/sensor_state_msg"
-        app:layout_constraintStart_toStartOf="@+id/menu4"
-        app:layout_constraintTop_toBottomOf="@+id/menu4" />
+        app:layout_constraintStart_toStartOf="@+id/menu3"
+        app:layout_constraintTop_toBottomOf="@+id/menu3" />
 
     <Button
         android:id="@+id/menu4"
@@ -72,8 +72,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/menu4_msg"
-        app:layout_constraintStart_toStartOf="@+id/menu3"
-        app:layout_constraintTop_toBottomOf="@+id/menu3" />
+        app:layout_constraintStart_toStartOf="@+id/menu2"
+        app:layout_constraintTop_toBottomOf="@+id/menu2" />
 
     <Button
         android:id="@+id/button"
