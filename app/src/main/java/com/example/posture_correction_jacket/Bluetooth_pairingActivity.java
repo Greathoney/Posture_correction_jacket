@@ -71,9 +71,7 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
 
         if(bluetoothAdapter == null) { // 디바이스가 블루투스를 지원하지 않을 때
             //뒤로가게 만들기
-
-            Intent intent = new Intent(Bluetooth_pairingActivity.this, MainActivity.class);
-            startActivity(intent);
+            onBackPressed();
 
 
         }
@@ -82,8 +80,9 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
             if(bluetoothAdapter.isEnabled()) { // 블루투스가 활성화 상태 (기기에 블루투스가 켜져있음)
                 selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
                 // 페어링시 다음 화면으로 넘어갑니다.
-                Intent intent2 = new Intent(Bluetooth_pairingActivity.this, Main_menuActivity.class);
-                startActivity(intent2);
+                onBackPressed();
+                Intent intent = new Intent(Bluetooth_pairingActivity.this, Main_menuActivity.class);
+                startActivity(intent);
             }
             else { // 블루투스가 비 활성화 상태 (기기에 블루투스가 꺼져있음)
                 // 블루투스를 활성화 하기 위한 다이얼로그 출력
@@ -106,8 +105,7 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
                 else { // '취소'를 눌렀을 때
 
                     //뒤로가게 만들기
-                    Intent intent = new Intent(Bluetooth_pairingActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    onBackPressed();
                     // 여기에 처리 할 코드를 작성하세요.
                 }
                 break;
