@@ -12,4 +12,8 @@
     <string name="sensor_state_msg">현재 센서가 가리키는 값</string>
     <string name="menu4_msg">센서 영점 조절</string>
     <string name="help">\?</string>
+    <string name="helpTitle">도움말</string>
+    <string name="helpContext1">도움이 되는 이야기들</string>
+    <string name="returning">돌아가기</string>
+
 </resources>

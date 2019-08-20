@@ -7,12 +7,13 @@
     tools:context=".Main_menuActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/help3"
         android:layout_width="40sp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="@string/help"
-        app:layout_constraintStart_toEndOf="@+id/menu4"
-        app:layout_constraintTop_toTopOf="@+id/menu4" />
+        app:layout_constraintStart_toEndOf="@+id/menu3"
+        app:layout_constraintTop_toTopOf="@+id/menu3" />
 
     <TextView
         android:id="@+id/main_menu"
@@ -49,25 +50,24 @@
         app:layout_constraintTop_toBottomOf="@+id/menu1" />
 
     <Button
-        android:id="@+id/menu3"
+        android:id="@+id/menu4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/menu3_msg"
-        app:layout_constraintStart_toStartOf="@+id/menu4"
-        app:layout_constraintTop_toBottomOf="@+id/menu4" />
+        app:layout_constraintStart_toStartOf="@+id/menu3"
+        app:layout_constraintTop_toBottomOf="@+id/menu3" />
 
     <TextView
         android:id="@+id/sensor_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/sensor_state_msg"
-        app:layout_constraintStart_toStartOf="@+id/menu3"
-        app:layout_constraintTop_toBottomOf="@+id/menu3" />
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="571dp" />
 
     <Button
-        android:id="@+id/menu4"
+        android:id="@+id/menu3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -76,26 +76,38 @@
         app:layout_constraintTop_toBottomOf="@+id/menu2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/menu3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/menu4_msg"
+        app:layout_constraintStart_toStartOf="@+id/menu2"
+        app:layout_constraintTop_toBottomOf="@+id/menu2" />
+
+    <Button
+        android:id="@+id/help2"
         android:layout_width="40sp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="@string/help"
         app:layout_constraintStart_toEndOf="@+id/menu2"
         app:layout_constraintTop_toTopOf="@+id/menu2" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/help1"
         android:layout_width="40sp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="@string/help"
         app:layout_constraintStart_toEndOf="@+id/menu1"
         app:layout_constraintTop_toTopOf="@+id/menu1" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/help4"
         android:layout_width="40sp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="@string/help"
-        app:layout_constraintStart_toEndOf="@+id/menu3"
-        app:layout_constraintTop_toTopOf="@+id/menu3" />
+        app:layout_constraintStart_toEndOf="@+id/menu4"
+        app:layout_constraintTop_toTopOf="@+id/menu4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
