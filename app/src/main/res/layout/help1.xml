@@ -22,8 +22,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
         android:text="@string/helpContext1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -32,8 +32,8 @@
         android:id="@+id/return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="120dp"
         android:text="@string/returning"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
