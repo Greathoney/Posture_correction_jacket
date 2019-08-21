@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // 레이아웃 및 액티비티를 전환하기 위한 코드
+                // 레이아웃 과 액티비티를 전환하기 위한 코드
                 Intent intent = new Intent(MainActivity.this, Bluetooth_pairingActivity.class);
                 startActivity(intent);
             }
