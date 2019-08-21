@@ -81,6 +81,9 @@
         android:layout_width="40sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:text="@string/help"
+        app:layout_constraintStart_toEndOf="@+id/menu2"
+        app:layout_constraintTop_toTopOf="@+id/menu2" />
 
     <Button
         android:id="@+id/help1"
