@@ -2,7 +2,7 @@
     <string name="app_name">자세교정자켓</string>
     <string name="title">자세교정 자켓</string>
     <string name="explain_msg">자세교정 자켓은 머시기 저시기 설명 등등. 블루투스 페어링이 선행되어야 한다넥 머시기 저시기. 기능 머시기 저시기 있다네</string>
-    <string name="not_pairing">현재 페어링되어있는 상태가 아닙니다. 버튼을 눌러서 페어링을 진행해주세요.</string>
+    <string name="not_pairing">현재 자세교정자켓과 페어링되어있는 상태가 아닙니다. 버튼을 눌러서 페어링을 진행해주세요.</string>
     <string name="now_pairing">페어링되었습니다. 버튼을 눌러 다음으로 넘어가주세요.</string>
     <string name="pairing_button_msg">페어링하기</string>
     <string name="main_menu_msg">메인 메뉴</string>
@@ -12,4 +12,8 @@
     <string name="sensor_state_msg">현재 센서가 가리키는 값</string>
     <string name="menu4_msg">센서 영점 조절</string>
     <string name="help">\?</string>
+    <string name="helpTitle1">"자세교정 자켓 도움말"</string>
+    <string name="returning">돌아가기</string>
+    <string name="helpContext1">평소의 어깨 좌우가 나란한지 확인해봅니다. 지속적으로 한쪽으로 치우치는 것이 감지되면 알림을 울리게 됩니다. 또한, 급격하게 치우치게 되면 빠르게 알람을 보낼 수 있도록 합니다.</string>
+
 </resources>
