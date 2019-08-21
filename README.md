@@ -6,4 +6,6 @@
 
 ## 실시간으로 자세를 잡아줌
 
+## 가방을 효율적으로 들게 해 줌
+
 # Posture_correction_jacket
