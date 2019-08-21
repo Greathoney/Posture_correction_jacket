@@ -11,4 +11,6 @@
 
 등등이 있습니다.
 
+그러합니다.
+
 # Posture_correction_jacket
