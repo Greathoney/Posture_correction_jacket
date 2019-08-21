@@ -4,4 +4,6 @@
 
 자세 교정 자켓은 다음과 같은 기능을 가집니다.
 
+## 실시간으로 자세를 잡아줌
+
 # Posture_correction_jacket
