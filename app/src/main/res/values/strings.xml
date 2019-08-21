@@ -12,8 +12,8 @@
     <string name="sensor_state_msg">현재 센서가 가리키는 값</string>
     <string name="menu4_msg">센서 영점 조절</string>
     <string name="help">\?</string>
-    <string name="helpTitle">도움말</string>
-    <string name="helpContext1">도움이 되는 이야기들</string>
+    <string name="helpTitle1">"자세교정 자켓 도움말"</string>
     <string name="returning">돌아가기</string>
+    <string name="helpContext1">평소의 어깨 좌우가 나란한지 확인해봅니다. 지속적으로 한쪽으로 치우치는 것이 감지되면 알림을 울리게 됩니다. 또한, 급격하게 치우치게 되면 빠르게 알람을 보낼 수 있도록 합니다.</string>
 
 </resources>
