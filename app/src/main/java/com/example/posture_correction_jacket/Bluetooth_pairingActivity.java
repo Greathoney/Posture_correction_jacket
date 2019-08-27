@@ -45,7 +45,7 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
 
     private TextView textViewReceive; // 수신 된 데이터를 표시하기 위한 텍스트 뷰
     private EditText editTextSend; // 송신 할 데이터를 작성하기 위한 에딧 텍스트
-    private Button buttonSend; // 송신하기 위한 버튼
+    private Button buttonSend; // 송신하기 위한
 
 
     @Override
@@ -54,9 +54,9 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
         setContentView(R.layout.bluetooth_pairing);
 
         // 각 컨테이너들의 id를 매인 xml과 맞춰준다.
-        textViewReceive = (TextView)findViewById(R.id.textView_receive);
-        editTextSend = (EditText)findViewById(R.id.editText_send);
-        buttonSend = (Button)findViewById(R.id.button_send);
+        textViewReceive = findViewById(R.id.textView_receive);
+        editTextSend = findViewById(R.id.editText_send);
+        buttonSend = findViewById(R.id.button_send);
 
         textViewReceive.setMovementMethod(new ScrollingMovementMethod());
 
@@ -82,9 +82,9 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
                 selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
 
                 // 블루투스 켤 시에 다음 화면으로 넘어갑니다.
-//                onBackPressed();
-//                Intent intent = new Intent(Bluetooth_pairingActivity.this, Main_menuActivity.class);
-//                startActivity(intent);
+                onBackPressed();
+                Intent intent = new Intent(Bluetooth_pairingActivity.this, Main_menuActivity.class);
+                startActivity(intent);
             }
             else { // 블루투스가 비 활성화 상태 (기기에 블루투스가 꺼져있음)
                 // 블루투스를 활성화 하기 위한 다이얼로그 출력
@@ -101,11 +101,10 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case REQUEST_ENABLE_BT :
-                if(requestCode == RESULT_OK) { // '사용'을 눌렀을 때
+                if(resultCode == RESULT_OK) { // '사용'을 눌렀을 때
                     selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
                 }
                 else { // '취소'를 눌렀을 때
-
 
                     // 여기에 처리 할 코드를 작성하세요.
                     //뒤로가게 만들기
@@ -117,7 +116,6 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
     }
 
     public void selectBluetoothDevice() {
-
 
         // 이미 페어링 되어있는 블루투스 기기를 찾습니다.
         devices = bluetoothAdapter.getBondedDevices();

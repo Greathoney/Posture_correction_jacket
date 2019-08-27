@@ -1,10 +1,13 @@
 package com.example.posture_correction_jacket;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Help1_Activity extends AppCompatActivity {
+public class Help2_Activity extends AppCompatActivity {
 
     Button return_;
 
@@ -12,13 +15,14 @@ public class Help1_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.help1);
+
         return_ = findViewById(R.id.return_);
 
 
         return_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Help1_Activity.this, Main_menuActivity.class);
+                Intent intent = new Intent(Help2_Activity.this, Main_menuActivity.class);
                 startActivity(intent);
             }
         });
