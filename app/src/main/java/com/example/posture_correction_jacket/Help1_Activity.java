@@ -24,9 +24,8 @@ public class Help1_Activity extends AppCompatActivity {
                 Intent intent = new Intent(Help1_Activity.this, Main_menuActivity.class);
                 startActivity(intent);
             }
-
-
         });
+
 
     }
 }
