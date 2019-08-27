@@ -21,11 +21,9 @@ public class Help1_Activity extends AppCompatActivity {
         return_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Help1_Activity.this, Main_menuActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
-
 
     }
 }
