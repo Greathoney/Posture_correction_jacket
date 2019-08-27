@@ -25,6 +25,7 @@ public class Help1_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
 
+
         });
 
     }
