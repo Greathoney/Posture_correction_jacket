@@ -62,18 +62,11 @@
         android:id="@+id/sensor_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:text="@string/sensor_state_msg"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="571dp" />
+        app:layout_constraintStart_toStartOf="@+id/menu4"
+        app:layout_constraintTop_toBottomOf="@+id/menu4" />
 
-    <Button
-        android:id="@+id/menu3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/menu4_msg"
-        app:layout_constraintStart_toStartOf="@+id/menu2"
-        app:layout_constraintTop_toBottomOf="@+id/menu2" />
 
     <Button
         android:id="@+id/menu3"

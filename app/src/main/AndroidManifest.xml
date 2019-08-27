@@ -33,6 +33,10 @@
 
         </activity>
 
+        <activity android:name=".Help1_Activity">
+
+        </activity>
+
     </application>
 
 </manifest>

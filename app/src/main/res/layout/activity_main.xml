@@ -37,7 +37,7 @@
         android:layout_marginTop="32dp"
         android:paddingLeft="16sp"
         android:paddingRight="16sp"
-        android:text="@string/not_pairing"
+        android:text="@string/now_pairing"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explain" />
 
