@@ -37,6 +37,11 @@
 
         </activity>
 
+
+        <activity android:name=".Help2_Activity">
+
+        </activity>
+
     </application>
 
 </manifest>
