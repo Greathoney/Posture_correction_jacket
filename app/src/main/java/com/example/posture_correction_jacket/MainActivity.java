@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 else { // '취소'를 눌렀을 때
 
                     // 여기에 처리 할 코드를 작성하세요.
-                    //뒤로가게 만들기
                     Toast.makeText(this, "블루투스를 활성화시켜 주세요.", Toast.LENGTH_LONG).show();
+
                 }
                 break;
         }
@@ -111,15 +111,19 @@ public class MainActivity extends AppCompatActivity {
             builder.setItems(charSequences, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    //TODO 재대로 된 블루투스 기기를 연결하도록 조건걸기
+                    if (charSequences[which].toString().equals("BT04-A")){
 
                     // 블루투스 켤 시에 다음 화면으로 넘어갑니다.
                     onBackPressed();
                     Intent intent = new Intent(MainActivity.this, Main_menuActivity.class);
                     startActivity(intent);
+                    }
+
+                    else{
+                        Toast.makeText(getApplicationContext(), "맞는 블루투스 기기를 찾아주세요.", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
-
             // 뒤로가기 버튼 누를 때 창이 안닫히도록 설정
             builder.setCancelable(false);
             // 다이얼로그 생성

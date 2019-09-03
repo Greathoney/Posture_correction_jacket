@@ -29,7 +29,7 @@ import java.util.Set;
 import java.util.UUID;
 
 
-public class Bluetooth_pairingActivity extends AppCompatActivity {
+public class Menu1_Activity extends AppCompatActivity {
 
     private static final int REQUEST_ENABLE_BT = 10; // 블루투스 활성화 상태
     private BluetoothAdapter bluetoothAdapter; // 블루투스 어댑터
@@ -47,11 +47,10 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
     private EditText editTextSend; // 송신 할 데이터를 작성하기 위한 에딧 텍스트
     private Button buttonSend; // 송신하기 위한
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bluetooth_pairing);
+        setContentView(R.layout.menu1);
 
         // 각 컨테이너들의 id를 매인 xml과 맞춰준다.
         textViewReceive = findViewById(R.id.textView_receive);
@@ -71,20 +70,11 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter(); // 블루투스 어댑터를 디폴트 어댑터로 설정
 
         if(bluetoothAdapter == null) { // 디바이스가 블루투스를 지원하지 않을 때
-            //뒤로가게 만들기
-            Toast.makeText(this, "디바이스가 블루투스를 지원하지 않습니다.", Toast.LENGTH_LONG).show();
-            onBackPressed();
-
+            // 여기에 처리 할 코드를 작성하세요.
         }
         else { // 디바이스가 블루투스를 지원 할 때
-
             if(bluetoothAdapter.isEnabled()) { // 블루투스가 활성화 상태 (기기에 블루투스가 켜져있음)
                 selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
-
-                // 블루투스 켤 시에 다음 화면으로 넘어갑니다.
-                onBackPressed();
-                Intent intent = new Intent(Bluetooth_pairingActivity.this, Main_menuActivity.class);
-                startActivity(intent);
             }
             else { // 블루투스가 비 활성화 상태 (기기에 블루투스가 꺼져있음)
                 // 블루투스를 활성화 하기 위한 다이얼로그 출력
@@ -101,22 +91,17 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case REQUEST_ENABLE_BT :
-                if(resultCode == RESULT_OK) { // '사용'을 눌렀을 때
+                if(requestCode == RESULT_OK) { // '사용'을 눌렀을 때
                     selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
                 }
                 else { // '취소'를 눌렀을 때
-
                     // 여기에 처리 할 코드를 작성하세요.
-                    //뒤로가게 만들기
-                    Toast.makeText(this, "블루투스를 켜 주세요.", Toast.LENGTH_LONG).show();
-                    onBackPressed();
                 }
                 break;
         }
     }
 
     public void selectBluetoothDevice() {
-
         // 이미 페어링 되어있는 블루투스 기기를 찾습니다.
         devices = bluetoothAdapter.getBondedDevices();
         // 페어링 된 디바이스의 크기를 저장
@@ -169,7 +154,7 @@ public class Bluetooth_pairingActivity extends AppCompatActivity {
             }
         }
         // UUID 생성
-        UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+        UUID uuid = java.util.UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
         // Rfcomm 채널을 통해 블루투스 디바이스와 통신하는 소켓 생성
         try {
             bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(uuid);

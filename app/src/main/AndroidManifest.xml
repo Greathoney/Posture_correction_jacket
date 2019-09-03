@@ -25,15 +25,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Bluetooth_pairingActivity">
-
-        </activity>
-
         <activity android:name=".Main_menuActivity">
 
         </activity>
 
         <activity android:name=".Help1_Activity">
+
+        </activity>
+
+        <activity android:name=".Menu1_Activity">
 
         </activity>
 

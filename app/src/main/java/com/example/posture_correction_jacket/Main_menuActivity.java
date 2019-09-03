@@ -39,37 +39,7 @@ public class Main_menuActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // 레이아웃 및 액티비티를 전환하기 위한 코드
-                Intent intent = new Intent(Main_menuActivity.this, Bluetooth_pairingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        menu2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // 레이아웃 및 액티비티를 전환하기 위한 코드
-                Intent intent = new Intent(Main_menuActivity.this, Bluetooth_pairingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        menu3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // 레이아웃 및 액티비티를 전환하기 위한 코드
-                Intent intent = new Intent(Main_menuActivity.this, Bluetooth_pairingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        menu4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // 레이아웃 및 액티비티를 전환하기 위한 코드
-                Intent intent = new Intent(Main_menuActivity.this, Bluetooth_pairingActivity.class);
+                Intent intent = new Intent(Main_menuActivity.this, Menu1_Activity.class);
                 startActivity(intent);
             }
         });
@@ -83,39 +53,5 @@ public class Main_menuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        help2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // 레이아웃 및 액티비티를 전환하기 위한 코드
-                Intent intent = new Intent(Main_menuActivity.this, Bluetooth_pairingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        help3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // 레이아웃 및 액티비티를 전환하기 위한 코드
-                Intent intent = new Intent(Main_menuActivity.this, Bluetooth_pairingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        help4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // 레이아웃 및 액티비티를 전환하기 위한 코드
-                Intent intent = new Intent(Main_menuActivity.this, Bluetooth_pairingActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-
     }
 }
