@@ -91,7 +91,7 @@ public class Menu1_Activity extends AppCompatActivity {
 
         switch (requestCode) {
             case REQUEST_ENABLE_BT :
-                if(requestCode == RESULT_OK) { // '사용'을 눌렀을 때
+                if(resultCode == RESULT_OK) { // '사용'을 눌렀을 때
                     selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
                 }
                 else { // '취소'를 눌렀을 때

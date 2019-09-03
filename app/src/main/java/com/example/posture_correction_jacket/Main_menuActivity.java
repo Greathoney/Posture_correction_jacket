@@ -10,13 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Main_menuActivity extends AppCompatActivity {
 
     Button menu1;
-    Button menu2;
-    Button menu3;
-    Button menu4;
     Button help1;
     Button help2;
-    Button help3;
-    Button help4;
 
 
     @Override
@@ -25,13 +20,8 @@ public class Main_menuActivity extends AppCompatActivity {
         setContentView(R.layout.main_menu);
 
         menu1 = findViewById(R.id.menu1);
-        menu2 = findViewById(R.id.menu2);
-        menu3 = findViewById(R.id.menu3);
-        menu4 = findViewById(R.id.menu4);
         help1 = findViewById(R.id.help1);
         help2 = findViewById(R.id.help2);
-        help3 = findViewById(R.id.help3);
-        help4 = findViewById(R.id.help4);
 
 
         menu1.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +40,16 @@ public class Main_menuActivity extends AppCompatActivity {
 
                 // 레이아웃 및 액티비티를 전환하기 위한 코드
                 Intent intent = new Intent(Main_menuActivity.this, Help1_Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        help2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // 레이아웃 및 액티비티를 전환하기 위한 코드
+                Intent intent = new Intent(Main_menuActivity.this, Help2_Activity.class);
                 startActivity(intent);
             }
         });
