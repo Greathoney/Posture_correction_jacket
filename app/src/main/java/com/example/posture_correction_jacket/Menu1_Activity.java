@@ -48,8 +48,7 @@ public class Menu1_Activity extends AppCompatActivity {
     private Button buttonSend; // 송신하기 위한
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceSt
         setContentView(R.layout.menu1);
 
         // 각 컨테이너들의 id를 매인 xml과 맞춰준다.
