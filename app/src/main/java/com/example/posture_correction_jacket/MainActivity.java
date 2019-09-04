@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
             List<String> list = new ArrayList<>();
             // 모든 디바이스의 이름을 리스트에 추가
             for (BluetoothDevice bluetoothDevice : devices) {
+                //TODO 필요한 것만 띄우기
+
                 list.add(bluetoothDevice.getName());
             }
             list.add("취소");

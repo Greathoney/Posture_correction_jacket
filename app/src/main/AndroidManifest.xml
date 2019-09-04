@@ -42,14 +42,6 @@
         </activity>
 
 
-        <activity android:name=".Help2_Activity">
-
-        </activity>
-
-        <activity android:name=".Help3_Activity">
-
-        </activity>
-
     </application>
 
 </manifest>

@@ -1,11 +1,16 @@
 package com.example.posture_correction_jacket;
 
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
@@ -17,6 +22,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.posture_correction_jacket.R;
 
@@ -48,7 +55,8 @@ public class Menu1_Activity extends AppCompatActivity {
     private Button buttonSend; // 송신하기 위한
 
     @Override
-    protected void onCreate(Bundle savedInstanceSt
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.menu1);
 
         // 각 컨테이너들의 id를 매인 xml과 맞춰준다.
@@ -202,7 +210,14 @@ public class Menu1_Activity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             // 텍스트 뷰에 출력
-                                            textViewReceive.append(text + "\n");
+                                            textViewReceive.setText("");
+                                            textViewReceive.append(((int)text.charAt(0)) + "");
+                                            if ((int)text.charAt(0) > 50){
+                                                createNotification();
+                                            }
+                                            else{
+                                                removeNotification();
+                                            }
                                         }
                                     });
                                 } // 개행 문자가 아닐 경우
@@ -237,4 +252,32 @@ public class Menu1_Activity extends AppCompatActivity {
         }
     }
 
+    private void createNotification() {
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
+
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setContentTitle("알림 제목");
+        builder.setContentText("알람 세부 텍스트");
+
+        builder.setColor(Color.RED);
+        // 사용자가 탭을 클릭하면 자동 제거
+        builder.setAutoCancel(true);
+
+        // 알림 표시
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationManager.createNotificationChannel(new NotificationChannel("default", "기본 채널", NotificationManager.IMPORTANCE_DEFAULT));
+        }
+
+        // id값은
+        // 정의해야하는 각 알림의 고유한 int값
+        notificationManager.notify(1, builder.build());
+    }
+
+    private void removeNotification() {
+
+        // Notification 제거
+        NotificationManagerCompat.from(this).cancel(1);
+    }
 }
