@@ -158,8 +158,10 @@ public class Main_menuActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             // 텍스트 뷰에 출력
-//                                            textViewReceive.setText("");
-//                                            textViewReceive.append(((int)text.charAt(0)) + "");
+////                                            textViewReceive.setText("");
+////                                            textViewReceive.append(((int)text.charAt(0)) + "");
+//                                            Intent intent_to_menu2 = new Intent(this, Menu2_Activity.class);
+//                                            intent_to_menu2 = putExtra()
                                             if ((int)text.charAt(0) > 50){
                                                 createNotification();
                                             }

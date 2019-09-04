@@ -140,7 +140,7 @@ public class Menu1_Activity extends AppCompatActivity {
                                         public void run() {
                                             // 텍스트 뷰에 출력
                                             textViewReceive.setText("");
-                                            textViewReceive.append(((int)text.charAt(0)) + "");
+                                            textViewReceive.append(text + "");
                                             if ((int)text.charAt(0) > 50){
                                                 createNotification();
                                             }
