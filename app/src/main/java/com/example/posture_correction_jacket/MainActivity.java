@@ -14,9 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -115,10 +117,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     if (charSequences[which].toString().equals("BT04-A")){
 
-                    // 블루투스 켤 시에 다음 화면으로 넘어갑니다.
-                    onBackPressed();
-                    Intent intent = new Intent(MainActivity.this, Main_menuActivity.class);
-                    startActivity(intent);
+                      onBackPressed();
+                      Intent intent = new Intent(MainActivity.this, Main_menuActivity.class);
+                      startActivity(intent);
                     }
 
                     else{
