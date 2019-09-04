@@ -29,6 +29,7 @@ import java.util.UUID;
 public class Main_menuActivity extends AppCompatActivity {
 
     Button menu1;
+    Button menu2;
     Button help1;
     Button help2;
 
@@ -49,6 +50,7 @@ public class Main_menuActivity extends AppCompatActivity {
         setContentView(R.layout.main_menu);
 
         menu1 = findViewById(R.id.menu1);
+        menu2 = findViewById(R.id.menu2);
         help1 = findViewById(R.id.help1);
         help2 = findViewById(R.id.help2);
 
@@ -59,6 +61,14 @@ public class Main_menuActivity extends AppCompatActivity {
 
                 // 레이아웃 및 액티비티를 전환하기 위한 코드
                 Intent intent = new Intent(Main_menuActivity.this, Menu1_Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        menu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Main_menuActivity.this, Menu2_Activity.class);
                 startActivity(intent);
             }
         });

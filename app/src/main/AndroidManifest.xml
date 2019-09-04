@@ -41,6 +41,10 @@
 
         </activity>
 
+        <activity android:name=".Menu2_Activity">
+
+        </activity>
+
 
     </application>
 
