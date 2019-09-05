@@ -2,22 +2,23 @@
     <string name="app_name">자세교정자켓</string>
     <string name="title">자세교정 자켓</string>
     <string name="explain_msg">자세교정 자켓은 머시기 저시기 설명 등등. 블루투스 페어링이 선행되어야 한다넥 머시기 저시기. 기능 머시기 저시기 있다네</string>
-
     <string name="now_pairing">자세교정 자켓이 페어링되어야 사용할 수 있습니다.</string>
     <string name="pairing_button_msg">페어링하기</string>
     <string name="main_menu_msg">메인 메뉴</string>
     <string name="menu1_msg">실시간 알림 설정</string>
-    <string name="menu2_msg">가방 끈 길이 조절</string>
+    <string name="menu2_msg">가방 벨런스 조절</string>
     <string name="menu3_msg">평소 나의 좌우 벨런스</string>
     <string name="sensor_state_msg">현재 센서가 가리키는 값</string>
-    <string name="menu4_msg">센서 영점 조절</string>
+    <string name="menu4_msg">센서 영점 조절 및 현재 센서값 확인</string>
     <string name="help">\?</string>
     <string name="helpTitle1">실시간 알림 설정 도움말</string>
-    <string name="helpTitle2">가방 끈 길이 조절 도움말</string>
-    <string name="helpTitle3">"평소 나의 좌우 벨런스 도움말"</string>
+    <string name="helpTitle2">가방 벨런스 조절 도움말</string>
+    <string name="helpTitle3">센서 영점 조절 및 현재 센서값 확인 도움말</string>
+    <string name="helpTitle4">평소 나의 좌우 벨런스 도움말</string>
     <string name="returning">돌아가기</string>
-    <string name="helpContext1">평소의 어깨 좌우가 나란한지 확인해봅니다. 지속적으로 한쪽으로 치우치는 것이 감지되면 알림을 울리게 됩니다. 또한, 급격하게 치우치게 되면 빠르게 알람을 보낼 수 있도록 합니다.</string>
-    <string name="helpContext2">여러가지 설명들2</string>
-    <string name="helpContext3">여러가지 설명들3</string>
+    <string name="helpContext1">자세교정자켓이 실시간으로 데이터를 측정하여 평소의 어깨 좌우가 나란한지 확인해봅니다. 지속적으로 한쪽으로 치우치는 것이 감지되면 알림을 울리게 됩니다. 또한, 급격하게 치우치게 되면 빠르게 알람을 보낼 수 있도록 합니다. 이 옵션을 끌 수 있습니다. 다만, 이 옵션을 사용하기 위해서는 안드로이드 앱이 항상 활성화되어야 합니다.</string>
+    <string name="helpContext2">자세교정자켓으로 책가방을 메는 데 좌우 무게가 달라지지 않도록 맞추어 줍니다. 또한 무게가 가장 크게 실릴 때 효율적으로 가방을 맸다고 볼 수 있습니다. </string>
+    <string name="helpContext3">센서 영점 조절을 할 수 있습니다. 자세교정자켓을 입고 정자세를 취해 영점조절을 완성합니다. 또한, 현재 감압센서와 기울기센서의 센서값을 실시간으로 확인해봅니다. </string>
+    <string name="helpContext4">축척된 데이터를 바탕으로 하여 나의 자세를 반성하는 시간을 가지도록 합니다. </string>
 
 </resources>

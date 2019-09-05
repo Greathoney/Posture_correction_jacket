@@ -45,6 +45,14 @@
 
         </activity>
 
+        <activity android:name=".Help3_Activity">
+
+        </activity>
+
+        <activity android:name=".Help4_Activity">
+
+        </activity>
+
 
     </application>
 

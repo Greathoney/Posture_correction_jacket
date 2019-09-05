@@ -11,13 +11,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -35,8 +30,8 @@ public class Main_menuActivity extends AppCompatActivity {
     Button menu2;
     Button help1;
     Button help2;
-    TextView checkData;
-
+    Button help3;
+    Button help4;
 
 
     private BluetoothAdapter bluetoothAdapter; // 블루투스 어댑터
@@ -62,7 +57,8 @@ public class Main_menuActivity extends AppCompatActivity {
         menu2 = findViewById(R.id.menu2);
         help1 = findViewById(R.id.help1);
         help2 = findViewById(R.id.help2);
-        checkData = findViewById(R.id.checkData);
+        help3 = findViewById(R.id.help3);
+        help4 = findViewById(R.id.help4);
 
 
         menu1.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +95,25 @@ public class Main_menuActivity extends AppCompatActivity {
 
                 // 레이아웃 및 액티비티를 전환하기 위한 코드
                 Intent intent = new Intent(Main_menuActivity.this, Help2_Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        help3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // 레이아웃 및 액티비티를 전환하기 위한 코드
+                Intent intent = new Intent(Main_menuActivity.this, Help3_Activity.class);
+                startActivity(intent);
+            }
+        });
+        help4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // 레이아웃 및 액티비티를 전환하기 위한 코드
+                Intent intent = new Intent(Main_menuActivity.this, Help4_Activity.class);
                 startActivity(intent);
             }
         });
@@ -169,7 +184,6 @@ public class Main_menuActivity extends AppCompatActivity {
                                     handler.post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Log.d(this.getClass().getName(),text);
 //                                             텍스트 뷰에 출력
 //                                            textViewReceive.setText("");
 //                                            textViewReceive.append(((int)text.charAt(0)) + "");
@@ -180,7 +194,10 @@ public class Main_menuActivity extends AppCompatActivity {
 //                                            else{
 //                                                removeNotification();
 //                                            }
+
                                             setGlobalString(text);
+//                                            Log.d(this.getClass().getName(),"메인메뉴");
+
 
 
                                         }
