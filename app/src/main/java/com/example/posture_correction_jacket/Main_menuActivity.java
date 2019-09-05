@@ -11,6 +11,9 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +35,9 @@ public class Main_menuActivity extends AppCompatActivity {
     Button menu2;
     Button help1;
     Button help2;
+    TextView checkData;
+
+
 
     private BluetoothAdapter bluetoothAdapter; // 블루투스 어댑터
     private Set<BluetoothDevice> devices; // 블루투스 디바이스 데이터 셋
@@ -43,16 +49,20 @@ public class Main_menuActivity extends AppCompatActivity {
     private byte[] readBuffer; // 수신 된 문자열을 저장하기 위한 버퍼
     private int readBufferPosition; // 버퍼 내 문자 저장 위치
 
+    static String mGlobalString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
+
         menu1 = findViewById(R.id.menu1);
         menu2 = findViewById(R.id.menu2);
         help1 = findViewById(R.id.help1);
         help2 = findViewById(R.id.help2);
+        checkData = findViewById(R.id.checkData);
 
 
         menu1.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +135,7 @@ public class Main_menuActivity extends AppCompatActivity {
     }
 
     public void receiveData() {
+
         final Handler handler = new Handler();
         // 데이터를 수신하기 위한 버퍼를 생성
         readBufferPosition = 0;
@@ -153,23 +164,28 @@ public class Main_menuActivity extends AppCompatActivity {
                                     System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
                                     // 인코딩 된 바이트 배열을 문자열로 변환
                                     final String text = new String(encodedBytes, "UTF-8");
+
                                     readBufferPosition = 0;
                                     handler.post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            // 텍스트 뷰에 출력
-////                                            textViewReceive.setText("");
-////                                            textViewReceive.append(((int)text.charAt(0)) + "");
-//                                            Intent intent_to_menu2 = new Intent(this, Menu2_Activity.class);
-//                                            intent_to_menu2 = putExtra()
-                                            if ((int)text.charAt(0) > 50){
-                                                createNotification();
-                                            }
-                                            else{
-                                                removeNotification();
-                                            }
+                                            Log.d(this.getClass().getName(),text);
+//                                             텍스트 뷰에 출력
+//                                            textViewReceive.setText("");
+//                                            textViewReceive.append(((int)text.charAt(0)) + "");
+//
+//                                            if ((int)text.charAt(0) > 50){
+//                                                createNotification();
+//                                            }
+//                                            else{
+//                                                removeNotification();
+//                                            }
+                                            setGlobalString(text);
+
+
                                         }
                                     });
+
                                 } // 개행 문자가 아닐 경우
                                 else {
                                     readBuffer[readBufferPosition++] = tempByte;
@@ -182,13 +198,22 @@ public class Main_menuActivity extends AppCompatActivity {
                     try {
                         // 1초마다 받아옴
                         Thread.sleep(1000);
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
                 }
             }
         });
+
         workerThread.start();
+    }
+    public void setGlobalString(String globalString){
+        this.mGlobalString = globalString;
+    }
+    public static String getGlobalString(){
+        return mGlobalString;
     }
 
     void sendData(String text) {
@@ -201,6 +226,7 @@ public class Main_menuActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
     private void createNotification() {
 
@@ -230,4 +256,20 @@ public class Main_menuActivity extends AppCompatActivity {
         // Notification 제거
         NotificationManagerCompat.from(this).cancel(1);
     }
+
+//    public Handler mHandler = new Handler() { // 핸들러 처리부분
+//        public void handleMessage(Message msg) { // 메시지를 받는부분
+//            switch (msg.what) { // 메시지 처리
+//                case 1:
+//                    set_timer(); // 나는 함수를 호출하였다.
+//                    break;
+//                case 2:  // 기타 전달인자로 인한 처리도 가능
+//                    break;
+//                case 3:
+//                    break;
+//            }
+//      }
+
 }
+
+
