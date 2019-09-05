@@ -28,6 +28,7 @@ public class Main_menuActivity extends AppCompatActivity {
 
     Button menu1;
     Button menu2;
+    Button menu3;
     Button help1;
     Button help2;
     Button help3;
@@ -55,6 +56,7 @@ public class Main_menuActivity extends AppCompatActivity {
 
         menu1 = findViewById(R.id.menu1);
         menu2 = findViewById(R.id.menu2);
+        menu3 = findViewById(R.id.menu3);
         help1 = findViewById(R.id.help1);
         help2 = findViewById(R.id.help2);
         help3 = findViewById(R.id.help3);
@@ -75,6 +77,14 @@ public class Main_menuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Main_menuActivity.this, Menu2_Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        menu3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Main_menuActivity.this, Menu3_Activity.class);
                 startActivity(intent);
             }
         });
