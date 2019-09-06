@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -33,6 +34,7 @@ public class Main_menuActivity extends AppCompatActivity {
     Button help2;
     Button help3;
     Button help4;
+    TextView warning_;
 
 
     private BluetoothAdapter bluetoothAdapter; // 블루투스 어댑터
@@ -61,6 +63,9 @@ public class Main_menuActivity extends AppCompatActivity {
         help2 = findViewById(R.id.help2);
         help3 = findViewById(R.id.help3);
         help4 = findViewById(R.id.help4);
+
+        warning_ = findViewById(R.id.warning_);
+
 
 
         menu1.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +160,7 @@ public class Main_menuActivity extends AppCompatActivity {
             // 데이터 수신 함수 호출
             receiveData();
         } catch (IOException e) {
+            warning_.setText("자세교정자켓과 연결되지 않았습니다.");
             e.printStackTrace();
         }
     }
