@@ -1,5 +1,6 @@
 package com.example.posture_correction_jacket;
 
+import android.app.ActivityManager;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.posture_correction_jacket.Main_menuActivity.leftPress;
 import static com.example.posture_correction_jacket.Main_menuActivity.rightPress;
@@ -92,5 +94,23 @@ public class Menu3_Activity extends AppCompatActivity{
 
 
 
+    private boolean isActivityTop(){
 
+        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+
+        List<ActivityManager.RunningTaskInfo> info;
+
+        info = activityManager.getRunningTasks(1);
+
+        if(info.get(0).topActivity.getClassName().equals(Menu3_Activity.this.getClass().getName())) { //에러가 뜨는 이유는 deprecated 되었기 때문, 그러나 쓸 수 있다.
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
 }

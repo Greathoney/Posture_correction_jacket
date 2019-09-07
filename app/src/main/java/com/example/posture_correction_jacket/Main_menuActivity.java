@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -163,8 +164,26 @@ public class Main_menuActivity extends AppCompatActivity {
             // 데이터 수신 함수 호출
             receiveData();
         } catch (IOException e) {
-            warning_.setText("자세교정자켓과 연결되지 않았습니다.");
+            warning_.setText("현재 자세교정자켓과 연결되지 않았습니다. 평소 나의 좌우 벨런스 외 기능을 사용할 수 없습니다.");
+
+//           // 블루투스 페어링 실패시 기능에 접근하지 못하도록 설정합니다.
+
+//            menu1.setClickable(false);
+//            menu2.setClickable(false);
+//            menu3.setClickable(false);
+//
+//            menu1.getBackground().setColorFilter(getResources().getColor(R.color.back_disabled), PorterDuff.Mode.MULTIPLY);
+//            menu2.getBackground().setColorFilter(getResources().getColor(R.color.back_disabled), PorterDuff.Mode.MULTIPLY);
+//            menu3.getBackground().setColorFilter(getResources().getColor(R.color.back_disabled), PorterDuff.Mode.MULTIPLY);
+//
+//            menu1.setTextColor(getResources().getColor(R.color.text_disabled));
+//            menu2.setTextColor(getResources().getColor(R.color.text_disabled));
+//            menu3.setTextColor(getResources().getColor(R.color.text_disabled));
+
+
             e.printStackTrace();
+
+
         }
     }
 

@@ -96,16 +96,16 @@ public class MainActivity extends AppCompatActivity {
         else {
             // 디바이스를 선택하기 위한 다이얼로그 생성
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("페어링 되어있는 블루투스 디바이스 목록");
+            builder.setTitle("페어링 되어있는 자세교정자켓 목록");
             // 페어링 된 각각의 디바이스의 이름과 주소를 저장
             List<String> list = new ArrayList<>();
             // 모든 디바이스의 이름을 리스트에 추가
             for (BluetoothDevice bluetoothDevice : devices) {
                 //TODO 필요한 것만 띄우기
-
-                list.add(bluetoothDevice.getName());
+                if (bluetoothDevice.getName().equals("BT04-A")){
+                    list.add(bluetoothDevice.getName());  // 9/7 오후7시 리스트에서 특정한 센서만 리스트에 띄우토록 수정했습니다.
+                }
             }
-            list.add("취소");
 
             // List를 CharSequence 배열로 변경
             final CharSequence[] charSequences = list.toArray(new CharSequence[list.size()]);
@@ -115,20 +115,13 @@ public class MainActivity extends AppCompatActivity {
             builder.setItems(charSequences, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    if (charSequences[which].toString().equals("BT04-A")){
-
-                      onBackPressed();
-                      Intent intent = new Intent(MainActivity.this, Main_menuActivity.class);
-                      startActivity(intent);
-                    }
-
-                    else{
-                        Toast.makeText(getApplicationContext(), "맞는 블루투스 기기를 찾아주세요.", Toast.LENGTH_LONG).show();
-                    }
+                    onBackPressed();
+                    Intent intent = new Intent(MainActivity.this, Main_menuActivity.class);
+                    startActivity(intent);
                 }
             });
-            // 뒤로가기 버튼 누를 때 창이 안닫히도록 설정
-            builder.setCancelable(false);
+            // 뒤로가기 버튼 누를 때 창이 안닫히도록 설정 -> 바뀌도록 설정
+            builder.setCancelable(true);
             // 다이얼로그 생성
             AlertDialog alertDialog = builder.create();
             alertDialog.show();

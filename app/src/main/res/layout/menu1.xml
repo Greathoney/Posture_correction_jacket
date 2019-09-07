@@ -8,29 +8,32 @@
 
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:switchPadding="10dp"
         android:text="@string/switchAlert2"
         app:layout_constraintStart_toStartOf="@+id/switch3"
         app:layout_constraintTop_toBottomOf="@+id/switch3" />
 
     <Switch
-        android:id="@+id/switch2"
+        android:id="@+id/switch3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:switchPadding="10dp"
         android:text="@string/switchAlert3"
         app:layout_constraintStart_toStartOf="@+id/switch1"
         app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
     <Switch
-        android:id="@+id/switch3"
+        android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="92dp"
+        android:switchPadding="10dp"
         android:text="@string/switchAlert1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/returning" />
@@ -41,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="@string/menu1_msg"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

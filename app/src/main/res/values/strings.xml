@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">자세교정자켓</string>
     <string name="title">자세교정 자켓</string>
-    <string name="explain_msg">자세교정 자켓은 머시기 저시기 설명 등등. 블루투스 페어링이 선행되어야 한다넥 머시기 저시기. 기능 머시기 저시기 있다네</string>
-    <string name="now_pairing">자세교정 자켓이 페어링되어야 사용할 수 있습니다.</string>
+    <string name="explain_msg">자세교정 자켓 어플리케이션에 오신 것을 환영합니다.  자세교정 자켓으로 몸의 기울기와 어깨에 눌리는 힘을 측정하여 사용자에게 알려 줄 수 있습니다.</string>
+    <string name="now_pairing">자세교정 자켓 블루투스 페어링이 연결되어야 합니다. 연결하지 못하면 센서로부터 입력받는 기능을 사용할 수 없습니다.</string>
     <string name="pairing_button_msg">페어링하기</string>
     <string name="main_menu_msg">메인 메뉴</string>
     <string name="menu1_msg">실시간 알림 설정</string>
