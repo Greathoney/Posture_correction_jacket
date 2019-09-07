@@ -250,6 +250,9 @@ public class Main_menuActivity extends AppCompatActivity {
                                     handler.post(new Runnable() {
                                         @Override
                                         public void run() {
+                                            if (switchVal1){
+                                                function();
+                                            }
 //                                             텍스트 뷰에 출력
 //                                            textViewReceive.setText("");
 //                                            textViewReceive.append(((int)text.charAt(0)) + "");
@@ -280,7 +283,7 @@ public class Main_menuActivity extends AppCompatActivity {
                     }
                     try {
                         // 1초마다 받아옴
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -360,6 +363,18 @@ public class Main_menuActivity extends AppCompatActivity {
 //                    break;
 //            }
 //      }
+
+    private void function(){
+        //TODO 센서 값을 바탕으로 알림을 띄울 수 있는 알고리즘, 센서 데이터를 저장할 수 있는 알고리즘
+        //TODO switchVal를 바탕으로 하여 알림을 띄울지 아닐지 제어 들어가기
+
+        //TODO 영점 조절이 있는 경우에는 '평소값 - 영점설정한 값'을 비교하여 확인할 수 있도록 한다.
+
+        //TODO 강한 알림 - 3분동안 크게 휘면 알람을 보낼 수 있도록 한다
+        //TODO 약한 알림 - 15분 동안 좋지 못하게 휘면 알람을 보낼 수 있도록 한다.
+
+        //일요일 작성하기 위해 미리 적어둔 것.
+    }
 
 }
 
