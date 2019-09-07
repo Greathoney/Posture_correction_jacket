@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Handler;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -26,7 +28,8 @@ import static com.example.posture_correction_jacket.Main_menuActivity.rightAngle
 public class Menu3_Activity extends AppCompatActivity{
 
     TextView checkData;
-    BarChart barChart;
+    BarChart barChart1;
+    BarChart barChart2;
     private Thread workerThread = null;
 
     @Override
@@ -35,7 +38,8 @@ public class Menu3_Activity extends AppCompatActivity{
         setContentView(R.layout.menu3);
 
         checkData = findViewById(R.id.checkData);
-        barChart = (BarChart) findViewById(R.id.barchart);
+        barChart1 = (BarChart) findViewById(R.id.barchart1);
+        barChart2 = (BarChart) findViewById(R.id.barchart2);
 
         final Handler handler = new Handler();
         workerThread = new Thread(new Runnable() {
@@ -46,28 +50,63 @@ public class Menu3_Activity extends AppCompatActivity{
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                ArrayList<BarEntry> entries = new ArrayList<>();
-                                entries.add(new BarEntry(leftPress, 0));
-                                entries.add(new BarEntry(rightPress, 1));
-                                entries.add(new BarEntry(leftAngle, 2));
-                                entries.add(new BarEntry(rightAngle, 3));
+                                ArrayList<BarEntry> entries1 = new ArrayList<>();
+                                entries1.add(new BarEntry(leftPress, 0));
+                                entries1.add(new BarEntry(rightPress, 1));
 
-                                BarDataSet barDataSet = new BarDataSet(entries, " ");
+                                ArrayList<BarEntry> entries2 = new ArrayList<>();
+                                entries2.add(new BarEntry(leftAngle, 0));
+                                entries2.add(new BarEntry(rightAngle, 1));
 
-                                ArrayList<String> labels = new ArrayList<>();
-                                labels.add("LP");
-                                labels.add("RP");
-                                labels.add("LA");
-                                labels.add("RA");
+                                BarDataSet barDataSet1 = new BarDataSet(entries1, " ");
+                                BarDataSet barDataSet2 = new BarDataSet(entries2, " ");
 
-                                BarData data = new BarData(labels, barDataSet);
-                                barChart.setData(data); // set the data and list of lables into chart
+                                YAxis y1 = barChart1.getAxisLeft();
+                                y1.setAxisMaxValue(500);
+                                y1.setAxisMinValue(0);
 
-                                barChart.setDescription("Description");  // set the description
+                                YAxis y2 = barChart2.getAxisLeft();
+                                y2.setAxisMaxValue(180);
+                                y2.setAxisMinValue(-180);
 
-                                barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                                ArrayList<String> labels1 = new ArrayList<>();
+                                labels1.add("LP");
+                                labels1.add("RP");
 
-//                                barChart.animateY(100);
+                                ArrayList<String> labels2 = new ArrayList<>();
+                                labels2.add("LA");
+                                labels2.add("RA");
+
+                                BarData data1 = new BarData(labels1, barDataSet1);
+                                barChart1.setData(data1); // set the data and list of lables into chart
+
+                                barChart1.setDescription("Pressure");  // set the description
+
+                                barChart1.setPinchZoom(false);
+                                barChart1.setScaleEnabled(false);
+                                barChart1.setDoubleTapToZoomEnabled(false);
+                                barChart1.getAxisRight().setEnabled(false);
+
+                                barChart1.notifyDataSetChanged();
+                                barChart1.invalidate();
+
+                                barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+
+                                BarData data2 = new BarData(labels2, barDataSet2);
+                                barChart2.setData(data2); // set the data and list of lables into chart
+
+                                barChart2.setDescription("Angle");  // set the description
+
+                                barChart2.setPinchZoom(false);
+                                barChart2.setScaleEnabled(false);
+                                barChart2.setDoubleTapToZoomEnabled(false);
+                                barChart2.getAxisRight().setEnabled(false);
+
+                                barChart2.notifyDataSetChanged();
+                                barChart2.invalidate();
+
+                                barDataSet2.setColors(ColorTemplate.COLORFUL_COLORS);
+
                             }
                         });
                     } catch (Exception e) {
