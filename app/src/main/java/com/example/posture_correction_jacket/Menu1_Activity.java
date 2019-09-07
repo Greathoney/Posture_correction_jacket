@@ -52,7 +52,6 @@ public class Menu1_Activity extends AppCompatActivity {
 //        switch3.setChecked(init_switchVal3);
 
 
-        switchVal1 = getSwitchData.getBoolean("switchVal1", true);
         switch1.setChecked(switchVal1);
 
         switchVal2 = getSwitchData.getBoolean("switchVal2", true);
@@ -62,8 +61,6 @@ public class Menu1_Activity extends AppCompatActivity {
         switch3.setChecked(switchVal3);
 
         if (!switchVal1) {
-            switch2.setChecked(switchVal2);
-            switch3.setChecked(switchVal3);
             switchVal2 = false;
             switchVal3 = false;
             switch2.setEnabled(false);
@@ -98,8 +95,6 @@ public class Menu1_Activity extends AppCompatActivity {
 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 switchVal2 = isChecked;
-
-
 //                Log.d(this.getClass().getName(), "1" + switchVal1 + switchVal2 + switchVal3);
 
             }
@@ -110,8 +105,6 @@ public class Menu1_Activity extends AppCompatActivity {
 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 switchVal3 = isChecked;
-
-
 //                Log.d(this.getClass().getName(), "2" + switchVal1 + switchVal2 + switchVal3);
 
             }

@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
@@ -86,10 +87,23 @@ public class Main_menuActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textView.setText("" + switchVal1 + switchVal2 + switchVal3);
+                textView.setText("옵션 저장 값 각각: " + switchVal1 + switchVal2 + switchVal3);
             }
         });
 
+
+        SharedPreferences getSwitchData = getSharedPreferences("switchFile", MODE_PRIVATE);
+
+        switchVal1 = getSwitchData.getBoolean("switchVal1", true);
+
+        switchVal2 = getSwitchData.getBoolean("switchVal2", true);
+
+        switchVal3 = getSwitchData.getBoolean("switchVal3", true);
+
+        if (!switchVal1) {
+            switchVal2 = false;
+            switchVal3 = false;
+        }
 
 
         menu1.setOnClickListener(new View.OnClickListener() {
