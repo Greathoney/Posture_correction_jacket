@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -47,8 +48,10 @@ public class Main_menuActivity extends AppCompatActivity {
     private byte[] readBuffer; // 수신 된 문자열을 저장하기 위한 버퍼
     private int readBufferPosition; // 버퍼 내 문자 저장 위치
 
-    static String mGlobalString;
-
+    static int leftPress;
+    static int rightPress;
+    static int leftAngle;
+    static int rightAngle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,8 +214,8 @@ public class Main_menuActivity extends AppCompatActivity {
 //                                                removeNotification();
 //                                            }
 
-                                            setGlobalString(text);
-//                                            Log.d(this.getClass().getName(),"메인메뉴");
+                                            setGlobalValues(text);
+                                            Log.d(this.getClass().getName(),text);
 
 
 
@@ -242,12 +245,20 @@ public class Main_menuActivity extends AppCompatActivity {
 
         workerThread.start();
     }
-    public void setGlobalString(String globalString){
-        this.mGlobalString = globalString;
+
+    // 블루투스 통신으로 받아온 문자열을 4개의 정수값으로 저장합니다.
+    private void setGlobalValues(String str) {
+        leftPress = Integer.parseInt(str.substring(1, 4));
+        rightPress = Integer.parseInt(str.substring(4, 7));
+        leftAngle = Integer.parseInt(str.substring(7, 11));
+        rightAngle = Integer.parseInt(str.substring(11, 15));
     }
-    public static String getGlobalString(){
-        return mGlobalString;
-    }
+
+    public int getLeftPress() { return leftPress; }
+    public int getRightPress() { return rightPress; }
+    public int getLeftAngle() { return leftAngle; }
+    public int getRightAngle() { return rightAngle; }
+
 
     void sendData(String text) {
         // 문자열에 개행문자("\n")를 추가해줍니다.
