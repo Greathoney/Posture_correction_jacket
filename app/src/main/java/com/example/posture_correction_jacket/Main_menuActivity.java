@@ -27,6 +27,7 @@ import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
 
+
 public class Main_menuActivity extends AppCompatActivity {
 
     Button menu1;
@@ -37,6 +38,9 @@ public class Main_menuActivity extends AppCompatActivity {
     Button help3;
     Button help4;
     TextView warning_;
+
+    Button button2;
+    TextView textView;
 
 
     private BluetoothAdapter bluetoothAdapter; // 블루투스 어댑터
@@ -54,6 +58,12 @@ public class Main_menuActivity extends AppCompatActivity {
     static int leftAngle;
     static int rightAngle;
 
+    static boolean switchVal1;
+    static boolean switchVal2;
+    static boolean switchVal3;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +79,16 @@ public class Main_menuActivity extends AppCompatActivity {
         help4 = findViewById(R.id.help4);
 
         warning_ = findViewById(R.id.warning_);
+
+        button2 = findViewById(R.id.button2);
+        textView = findViewById(R.id.textView);
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textView.setText("" + switchVal1 + switchVal2 + switchVal3);
+            }
+        });
 
 
 
@@ -142,6 +162,8 @@ public class Main_menuActivity extends AppCompatActivity {
         connectDevice("BT04-A");
     }
 
+
+
     public void connectDevice(String deviceName) {
         // 페어링 된 디바이스들을 모두 탐색
         devices = bluetoothAdapter.getBondedDevices();
@@ -167,18 +189,10 @@ public class Main_menuActivity extends AppCompatActivity {
             warning_.setText("현재 자세교정자켓과 연결되지 않았습니다. 평소 나의 좌우 벨런스 외 기능을 사용할 수 없습니다.");
 
 //           // 블루투스 페어링 실패시 기능에 접근하지 못하도록 설정합니다.
-
-//            menu1.setClickable(false);
-//            menu2.setClickable(false);
-//            menu3.setClickable(false);
 //
-//            menu1.getBackground().setColorFilter(getResources().getColor(R.color.back_disabled), PorterDuff.Mode.MULTIPLY);
-//            menu2.getBackground().setColorFilter(getResources().getColor(R.color.back_disabled), PorterDuff.Mode.MULTIPLY);
-//            menu3.getBackground().setColorFilter(getResources().getColor(R.color.back_disabled), PorterDuff.Mode.MULTIPLY);
-//
-//            menu1.setTextColor(getResources().getColor(R.color.text_disabled));
-//            menu2.setTextColor(getResources().getColor(R.color.text_disabled));
-//            menu3.setTextColor(getResources().getColor(R.color.text_disabled));
+//            menu1.setEnabled(false);
+//            menu2.setEnabled(false);
+//            menu3.setEnabled(false);
 
 
             e.printStackTrace();
@@ -233,8 +247,8 @@ public class Main_menuActivity extends AppCompatActivity {
 //                                                removeNotification();
 //                                            }
 
-                                            setGlobalValues(text);
-                                            Log.d(this.getClass().getName(),text);
+                                            setGlobalSensorValues(text);
+//                                            Log.d(this.getClass().getName(),text);
 
 
 
@@ -266,7 +280,7 @@ public class Main_menuActivity extends AppCompatActivity {
     }
 
     // 블루투스 통신으로 받아온 문자열을 4개의 정수값으로 저장합니다.
-    private void setGlobalValues(String str) {
+    private void setGlobalSensorValues(String str) {
         leftPress = Integer.parseInt(str.substring(1, 4));
         rightPress = Integer.parseInt(str.substring(4, 7));
         leftAngle = Integer.parseInt(str.substring(7, 11));

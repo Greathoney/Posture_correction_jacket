@@ -2,9 +2,17 @@ package com.example.posture_correction_jacket;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+
+import static com.example.posture_correction_jacket.Main_menuActivity.switchVal1;
+import static com.example.posture_correction_jacket.Main_menuActivity.switchVal2;
+import static com.example.posture_correction_jacket.Main_menuActivity.switchVal3;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,10 +23,6 @@ public class Menu1_Activity extends AppCompatActivity {
     Switch switch3;
 
     Button returnMenu1;
-
-    boolean switchVal1;
-    boolean switchVal2;
-    boolean switchVal3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class Menu1_Activity extends AppCompatActivity {
         returnMenu1 = findViewById(R.id.returnMenu1);
 
 
-        SharedPreferences getSwitchData = getSharedPreferences("switchFile",MODE_PRIVATE);
+        SharedPreferences getSwitchData = getSharedPreferences("switchFile", MODE_PRIVATE);
 
 
 ////        boolean init_switchVal1 = getSwitchData.getBoolean("switchVal1", true);
@@ -57,30 +61,105 @@ public class Menu1_Activity extends AppCompatActivity {
         switchVal3 = getSwitchData.getBoolean("switchVal3", true);
         switch3.setChecked(switchVal3);
 
-        switch1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchVal1 = switch1.isChecked();
-            }
+        if (!switchVal1) {
+            switch2.setChecked(switchVal2);
+            switch3.setChecked(switchVal3);
+            switchVal2 = false;
+            switchVal3 = false;
+            switch2.setEnabled(false);
+            switch3.setEnabled(false);
+        }
 
+
+        switch1.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+            @Override
+
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if (!isChecked) {
+                    switchVal2 = false;
+                    switchVal3 = false;
+                } else {
+                    switchVal2 = switch2.isChecked();
+                    switchVal3 = switch3.isChecked();
+                }
+
+                switch2.setEnabled(isChecked);
+                switch3.setEnabled(isChecked);
+                switchVal1 = isChecked;
+
+
+//                Log.d(this.getClass().getName(), "0" + switchVal1 + switchVal2 + switchVal3);
+
+            }
         });
 
-        switch2.setOnClickListener(new View.OnClickListener() {
+        switch2.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             @Override
-            public void onClick(View v) {
-                switchVal2 = switch2.isChecked();
+
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                switchVal2 = isChecked;
+
+
+//                Log.d(this.getClass().getName(), "1" + switchVal1 + switchVal2 + switchVal3);
 
             }
-
         });
 
-        switch3.setOnClickListener(new View.OnClickListener() {
+        switch3.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             @Override
-            public void onClick(View v) {
-                switchVal3 = switch3.isChecked();
-            }
 
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                switchVal3 = isChecked;
+
+
+//                Log.d(this.getClass().getName(), "2" + switchVal1 + switchVal2 + switchVal3);
+
+            }
         });
+
+
+//        switch1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (!switch1.isChecked()) {
+//                    switchVal2 = false;
+//                    switchVal3 = false;
+//                } else {
+//                    switchVal2 = switch2.isChecked();
+//                    switchVal3 = switch3.isChecked();
+//                }
+//
+//                switch2.setEnabled(switch1.isChecked());
+//                switch3.setEnabled(switch1.isChecked());
+//                switchVal1 = switch1.isChecked();
+//
+//
+////                Log.d(this.getClass().getName(), "1" + switchVal1 + switchVal2 + switchVal3);
+//            }
+//
+//        });
+//
+//
+//        switch2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switchVal2 = switch2.isChecked();
+//
+////                Log.d(this.getClass().getName(), "2" + switchVal1 + switchVal2 + switchVal3);
+//            }
+//        });
+//
+//        switch3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switchVal3 = switch3.isChecked();
+//
+////                Log.d(this.getClass().getName(), "3" + switchVal1 + switchVal2 + switchVal3);
+//            }
+//
+//        });
+
+
 
         returnMenu1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +167,6 @@ public class Menu1_Activity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-
-
 
 
     }
@@ -115,11 +191,15 @@ public class Menu1_Activity extends AppCompatActivity {
         //editor.putInt();
         //editor.putStringSet();
 
-        editor.putBoolean("switchVal1", switchVal1);
-        editor.putBoolean("switchVal2", switchVal2);
-        editor.putBoolean("switchVal3", switchVal3);
+        editor.putBoolean("switchVal1", switch1.isChecked());
+        editor.putBoolean("switchVal2", switch2.isChecked());
+        editor.putBoolean("switchVal3", switch3.isChecked());
 
         //최종 커밋
         editor.commit();
     }
+
+
+
+
 }

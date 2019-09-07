@@ -34,8 +34,6 @@ public class Menu3_Activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu3);
 
-        //TODO 이 레이아웃 밖으로 나갈때 스레드가 자동으로 종료되도록 설정하기
-
         checkData = findViewById(R.id.checkData);
         barChart = (BarChart) findViewById(R.id.barchart);
 
@@ -84,6 +82,7 @@ public class Menu3_Activity extends AppCompatActivity{
             }
         });
         workerThread.start();
+
 
 
 

@@ -21,6 +21,6 @@
     <string name="helpContext3">센서 영점 조절을 할 수 있습니다. 자세교정자켓을 입고 정자세를 취해 영점조절을 완성합니다. 또한, 현재 감압센서와 기울기센서의 센서값을 실시간으로 확인해봅니다. </string>
     <string name="helpContext4">축척된 데이터를 바탕으로 하여 나의 자세를 반성하는 시간을 가지도록 합니다. </string>
     <string name="switchAlert1">실시간으로 데이터를 수집합니다.   </string>
-    <string name="switchAlert2">심하게 기울어졌을 때 즉시 알림 띄우기   </string>
-    <string name="switchAlert3">기울어짐이 오래 지속되었을 때 알림 띄우기   </string>
+    <string name="switchAlert3">심하게 기울어졌을 때 즉시 알림 띄우기   </string>
+    <string name="switchAlert2">기울어짐이 오래 지속되었을 때 알림 띄우기   </string>
 </resources>
