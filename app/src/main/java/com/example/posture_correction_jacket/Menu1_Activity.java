@@ -3,6 +3,7 @@ package com.example.posture_correction_jacket;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +14,11 @@ public class Menu1_Activity extends AppCompatActivity {
     Switch switch2;
     Switch switch3;
 
+    Button returnMenu1;
 
-    private boolean switchVal1;
-    private boolean switchVal2;
-    private boolean switchVal3;
-
+    boolean switchVal1;
+    boolean switchVal2;
+    boolean switchVal3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,31 +29,38 @@ public class Menu1_Activity extends AppCompatActivity {
         switch2 = findViewById(R.id.switch2);
         switch3 = findViewById(R.id.switch3);
 
+        returnMenu1 = findViewById(R.id.returnMenu1);
+
 
         SharedPreferences getSwitchData = getSharedPreferences("switchFile",MODE_PRIVATE);
 
+
+////        boolean init_switchVal1 = getSwitchData.getBoolean("switchVal1", true);
+//        boolean init_switchVal2 = getSwitchData.getBoolean("switchVal2", true);
+//        boolean init_switchVal3 = getSwitchData.getBoolean("switchVal3", true);
+//
+////        switchVal1 = init_switchVal1;
+//        switchVal2 = init_switchVal2;
+//        switchVal3 = init_switchVal3;
+//
+////        switch1.setChecked(init_switchVal1);
+//        switch2.setChecked(init_switchVal2);
+//        switch3.setChecked(init_switchVal3);
+
+
         switchVal1 = getSwitchData.getBoolean("switchVal1", true);
-        switchVal2 = getSwitchData.getBoolean("switchVal2", true);
-        switchVal3 = getSwitchData.getBoolean("switchVal3", true);
-
         switch1.setChecked(switchVal1);
+
+        switchVal2 = getSwitchData.getBoolean("switchVal2", true);
         switch2.setChecked(switchVal2);
+
+        switchVal3 = getSwitchData.getBoolean("switchVal3", true);
         switch3.setChecked(switchVal3);
-
-
 
         switch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (switch1.isChecked()){
-                    switchVal1 = true;
-
-                }
-                else{
-                    switchVal1 = false;
-
-                }
-
+                switchVal1 = switch1.isChecked();
             }
 
         });
@@ -60,14 +68,7 @@ public class Menu1_Activity extends AppCompatActivity {
         switch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (switch2.isChecked()){
-                    switchVal2 = true;
-
-                }
-                else{
-                    switchVal2 = false;
-
-                }
+                switchVal2 = switch2.isChecked();
 
             }
 
@@ -76,36 +77,21 @@ public class Menu1_Activity extends AppCompatActivity {
         switch3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (switch3.isChecked()){
-                    switchVal3 = true;
-
-                }
-                else{
-                    switchVal3 = false;
-
-                }
-
+                switchVal3 = switch3.isChecked();
             }
 
+        });
+
+        returnMenu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
         });
 
 
 
 
-//        option1 = getSharedPreferences("option1", MODE_PRIVATE);
-//        load();
-//
-//        idText
-//
-//    }
-//
-//    private void save(){
-//        SharedPreferences.Editor = editor = appData.edit();
-//
-//        editor.putBoolean("SAVE")
-//    }
-//
-//    private void load(){
 
     }
 
@@ -118,6 +104,7 @@ public class Menu1_Activity extends AppCompatActivity {
 
         //저장을 하기위해 editor를 이용하여 값을 저장시켜준다.
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
         // 사용자가 입력한 저장할 데이터
 //        editor.putString("text",text); // key, value를 이용하여 저장하는 형태
         //다양한 형태의 변수값을 저장할 수 있다.
@@ -134,7 +121,5 @@ public class Menu1_Activity extends AppCompatActivity {
 
         //최종 커밋
         editor.commit();
-
-
     }
 }

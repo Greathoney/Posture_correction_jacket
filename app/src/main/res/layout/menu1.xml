@@ -7,15 +7,16 @@
     tools:context=".Menu1_Activity">
 
 
-    <Switch
-        android:id="@+id/switch2"
+    <Button
+        android:id="@+id/returnMenu1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:switchPadding="10dp"
-        android:text="@string/switchAlert2"
-        app:layout_constraintStart_toStartOf="@+id/switch3"
-        app:layout_constraintTop_toBottomOf="@+id/switch3" />
+        android:layout_marginTop="32dp"
+        android:text="돌아가기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch2" />
 
     <Switch
         android:id="@+id/switch3"
@@ -37,6 +38,16 @@
         android:text="@string/switchAlert1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/returning" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:switchPadding="10dp"
+        android:text="@string/switchAlert2"
+        app:layout_constraintStart_toStartOf="@+id/switch3"
+        app:layout_constraintTop_toBottomOf="@+id/switch3" />
 
     <TextView
         android:id="@+id/returning"
