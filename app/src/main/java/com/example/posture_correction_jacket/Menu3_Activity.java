@@ -43,7 +43,7 @@ public class Menu3_Activity extends AppCompatActivity{
         workerThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (!(Thread.currentThread().isInterrupted())) {
+                while (!(Thread.currentThread().isInterrupted()) && isActivityTop()) {
                     try {
                         handler.post(new Runnable() {
                             @Override
@@ -88,10 +88,6 @@ public class Menu3_Activity extends AppCompatActivity{
 
 
     }
-
-
-
-
 
 
     private boolean isActivityTop(){
