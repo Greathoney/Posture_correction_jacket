@@ -59,9 +59,18 @@ public class Main_menuActivity extends AppCompatActivity {
     static int leftAngle;
     static int rightAngle;
 
-    static boolean switchVal1;
-    static boolean switchVal2;
-    static boolean switchVal3;
+    //아래 4개의 변수는 센서로 측정된 값을 바탕으로 작성됩니다.
+
+    static boolean oneBagMode;  //가방을 한쪽으로만 멨는지 확인합니다.
+    static boolean twoBagMode; //가방을 양쪽으로 멨는지 확인합니다. 두 값이 모두 false이면 가방을 메지 않은 것으로 간주합니다.
+
+    static boolean isUserPutOn; //사용자가 자세교정 자켓을 착용했는지 확인합니다. true이어야 작동합니다.
+    static boolean isUserRunning; //사용자가 달리고 있는지 확인합니다. true가 되면 좌우 자세가 치우쳐도 불안정한 자세라고 인정하지 않습니다.
+
+
+    static boolean switchVal1;  // 실시간으로 데이터를 수집합니다.
+    static boolean switchVal2; // 기울어짐이 오래 지속되었을 때 알림 띄우기
+    static boolean switchVal3; // 심하게 기울어졌을때 즉시 알림 띄우기
 
 
 
@@ -250,9 +259,12 @@ public class Main_menuActivity extends AppCompatActivity {
                                     handler.post(new Runnable() {
                                         @Override
                                         public void run() {
+                                            setGlobalSensorValues(text);
                                             if (switchVal1){
-                                                function();
+                                                checkBalance();
                                             }
+
+
 //                                             텍스트 뷰에 출력
 //                                            textViewReceive.setText("");
 //                                            textViewReceive.append(((int)text.charAt(0)) + "");
@@ -264,9 +276,7 @@ public class Main_menuActivity extends AppCompatActivity {
 //                                                removeNotification();
 //                                            }
 
-                                            setGlobalSensorValues(text);
 //                                            Log.d(this.getClass().getName(),text);
-
 
 
                                         }
@@ -364,7 +374,7 @@ public class Main_menuActivity extends AppCompatActivity {
 //            }
 //      }
 
-    private void function(){
+    private void checkBalance(){
         //TODO 센서 값을 바탕으로 알림을 띄울 수 있는 알고리즘, 센서 데이터를 저장할 수 있는 알고리즘
         //TODO switchVal를 바탕으로 하여 알림을 띄울지 아닐지 제어 들어가기
 
@@ -374,6 +384,8 @@ public class Main_menuActivity extends AppCompatActivity {
         //TODO 약한 알림 - 15분 동안 좋지 못하게 휘면 알람을 보낼 수 있도록 한다.
 
         //일요일 작성하기 위해 미리 적어둔 것.
+
+
     }
 
 }

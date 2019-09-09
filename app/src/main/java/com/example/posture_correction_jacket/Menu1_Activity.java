@@ -38,20 +38,6 @@ public class Menu1_Activity extends AppCompatActivity {
 
         SharedPreferences getSwitchData = getSharedPreferences("switchFile", MODE_PRIVATE);
 
-
-////        boolean init_switchVal1 = getSwitchData.getBoolean("switchVal1", true);
-//        boolean init_switchVal2 = getSwitchData.getBoolean("switchVal2", true);
-//        boolean init_switchVal3 = getSwitchData.getBoolean("switchVal3", true);
-//
-////        switchVal1 = init_switchVal1;
-//        switchVal2 = init_switchVal2;
-//        switchVal3 = init_switchVal3;
-//
-////        switch1.setChecked(init_switchVal1);
-//        switch2.setChecked(init_switchVal2);
-//        switch3.setChecked(init_switchVal3);
-
-
         switch1.setChecked(switchVal1);
 
         switchVal2 = getSwitchData.getBoolean("switchVal2", true);
@@ -109,49 +95,6 @@ public class Menu1_Activity extends AppCompatActivity {
 
             }
         });
-
-
-//        switch1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (!switch1.isChecked()) {
-//                    switchVal2 = false;
-//                    switchVal3 = false;
-//                } else {
-//                    switchVal2 = switch2.isChecked();
-//                    switchVal3 = switch3.isChecked();
-//                }
-//
-//                switch2.setEnabled(switch1.isChecked());
-//                switch3.setEnabled(switch1.isChecked());
-//                switchVal1 = switch1.isChecked();
-//
-//
-////                Log.d(this.getClass().getName(), "1" + switchVal1 + switchVal2 + switchVal3);
-//            }
-//
-//        });
-//
-//
-//        switch2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                switchVal2 = switch2.isChecked();
-//
-////                Log.d(this.getClass().getName(), "2" + switchVal1 + switchVal2 + switchVal3);
-//            }
-//        });
-//
-//        switch3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                switchVal3 = switch3.isChecked();
-//
-////                Log.d(this.getClass().getName(), "3" + switchVal1 + switchVal2 + switchVal3);
-//            }
-//
-//        });
-
 
 
         returnMenu1.setOnClickListener(new View.OnClickListener() {
