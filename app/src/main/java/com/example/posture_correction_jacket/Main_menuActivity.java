@@ -28,6 +28,9 @@ import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
 
+import static com.example.posture_correction_jacket.Check.CheckBagState;
+import static com.example.posture_correction_jacket.Check.CheckIsPutOnState;
+
 
 public class Main_menuActivity extends AppCompatActivity {
 
@@ -61,12 +64,14 @@ public class Main_menuActivity extends AppCompatActivity {
 
     //아래 4개의 변수는 센서로 측정된 값을 바탕으로 작성됩니다.
 
-    static boolean oneBagMode;  //가방을 한쪽으로만 멨는지 확인합니다.
-    static boolean twoBagMode; //가방을 양쪽으로 멨는지 확인합니다. 두 값이 모두 false이면 가방을 메지 않은 것으로 간주합니다.
+    static int n_BagMode = 0;  //현재 가방을 한쪽으로만 멨는지 확인합니다. 0 가방을 메지 않은 것으로 간주합니다. 1 왼쪽 2 오른쪽 3양쪽
+    static int n_BagMode_debouncing = 0;
 
-    static boolean isUserPutOn; //사용자가 자세교정 자켓을 착용했는지 확인합니다. true이어야 작동합니다.
-    static boolean isUserRunning; //사용자가 달리고 있는지 확인합니다. true가 되면 좌우 자세가 치우쳐도 불안정한 자세라고 인정하지 않습니다.
+    static int targetBagMode = 0; //측정된 가방 모드 0 가방 들지 않음 1 왼쪽 한끈 가방 듬 2 오른쪽 한끈 가방 듬 3 양쪽 책가방 듬
+    static int debouncing_target = 0; //일정시간 지나서 오래 지속되면 바뀔 가방 모드를 지정합니다.
 
+    static boolean isUserPutOn = false; //사용자가 자세교정 자켓을 착용했는지 확인합니다. true이어야 작동합니다.
+    static boolean isUserRunning = false; //사용자가 달리고 있는지 확인합니다. true가 되면 좌우 자세가 치우쳐도 불안정한 자세라고 인정하지 않습니다.
 
     static boolean switchVal1;  // 실시간으로 데이터를 수집합니다.
     static boolean switchVal2; // 기울어짐이 오래 지속되었을 때 알림 띄우기
@@ -261,9 +266,27 @@ public class Main_menuActivity extends AppCompatActivity {
                                         public void run() {
                                             setGlobalSensorValues(text);
                                             if (switchVal1){
-                                                checkBalance();
-                                            }
 
+                                                CheckBagState();  //변하는 변수는 n_BagMode
+                                                if (n_BagMode==1){
+                                                    //왼쪽에 가방무게가 실림을 표시
+                                                }
+                                                else if (n_BagMode==2){
+                                                    //오른쪽에 가방무게가 실림을 표시
+
+                                                }
+                                                else if(n_BagMode==3){
+                                                    //양쪽에 가방무게가 실림을 표시, 가방의 좌우벨런스가 잘 맞는지 확인해줘야함.
+                                                }
+
+
+                                                CheckIsPutOnState(); //변하는 변수는  isUserPutOn. isUserRunning
+                                                if (!isUserPutOn && !isUserRunning){
+                                                    //받은 데이터를 저장하고 상황에 맞게 처리할 수 있어야 함.
+                                                    //필요하면 알람을 울릴 수 있게 설정
+                                                }
+
+                                            }
 
 //                                             텍스트 뷰에 출력
 //                                            textViewReceive.setText("");
@@ -373,20 +396,6 @@ public class Main_menuActivity extends AppCompatActivity {
 //                    break;
 //            }
 //      }
-
-    private void checkBalance(){
-        //TODO 센서 값을 바탕으로 알림을 띄울 수 있는 알고리즘, 센서 데이터를 저장할 수 있는 알고리즘
-        //TODO switchVal를 바탕으로 하여 알림을 띄울지 아닐지 제어 들어가기
-
-        //TODO 영점 조절이 있는 경우에는 '평소값 - 영점설정한 값'을 비교하여 확인할 수 있도록 한다.
-
-        //TODO 강한 알림 - 3분동안 크게 휘면 알람을 보낼 수 있도록 한다
-        //TODO 약한 알림 - 15분 동안 좋지 못하게 휘면 알람을 보낼 수 있도록 한다.
-
-        //일요일 작성하기 위해 미리 적어둔 것.
-
-
-    }
 
 }
 
