@@ -63,6 +63,11 @@ public class Main_menuActivity extends AppCompatActivity {
     static int leftAngle;
     static int rightAngle;
 
+    private double LP_damped = 0;
+    private double RP_damped = 0;
+    private double LA_damped = 0;
+    private double RA_damped = 0;
+
     //아래 4개의 변수는 센서로 측정된 값을 바탕으로 작성됩니다.
 
     static int n_BagMode = 0;  //현재 가방을 한쪽으로만 멨는지 확인합니다. 0 가방을 메지 않은 것으로 간주합니다. 1 왼쪽 2 오른쪽 3양쪽
@@ -76,6 +81,8 @@ public class Main_menuActivity extends AppCompatActivity {
     static boolean switchVal1;  // 실시간으로 데이터를 수집합니다.
     static boolean switchVal2; // 기울어짐이 오래 지속되었을 때 알림 띄우기
     static boolean switchVal3; // 심하게 기울어졌을때 즉시 알림 띄우기
+
+    final static double dampingRate = 0.9;
 
 
     @Override
@@ -275,7 +282,12 @@ public class Main_menuActivity extends AppCompatActivity {
                                     handler.post(new Runnable() {
                                         @Override
                                         public void run() {
+                                            // 받아온 문자열로부터 양쪽 압력, 기울기 값을 4개의 변수에 저장
                                             setGlobalSensorValues(text);
+
+                                            // 완만화된 값들 업데이트
+                                            setDampedValue();
+
                                             //시간 - SensorValue으로 하여 데이터베이스에 저장
                                             //
 
@@ -327,10 +339,21 @@ public class Main_menuActivity extends AppCompatActivity {
         rightAngle = Integer.parseInt(str.substring(11, 15));
     }
 
+    private void setDampedValue() {
+        LP_damped = getDampedValue(LP_damped, leftPress);
+        RP_damped = getDampedValue(RP_damped, rightPress);
+        LA_damped = getDampedValue(LA_damped, leftAngle);
+        RA_damped = getDampedValue(RA_damped, rightAngle);
+    }
+
     public int getLeftPress() { return leftPress; }
     public int getRightPress() { return rightPress; }
     public int getLeftAngle() { return leftAngle; }
     public int getRightAngle() { return rightAngle; }
+
+    private double getDampedValue(double previousValue, int newValue) {
+        return previousValue * dampingRate + newValue * (1-dampingRate);
+    }
 
 
     void sendData(String text) {
@@ -386,6 +409,7 @@ public class Main_menuActivity extends AppCompatActivity {
 //                    break;
 //            }
 //      }
+
 
 }
 
