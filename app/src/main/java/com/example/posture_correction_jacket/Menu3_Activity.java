@@ -121,10 +121,6 @@ public class Menu3_Activity extends AppCompatActivity{
             }
         });
         workerThread.start();
-
-
-
-
     }
 
 

@@ -1,21 +1,28 @@
 package com.example.posture_correction_jacket;
 
+import static com.example.posture_correction_jacket.Main_menuActivity.leftPress;
+import static com.example.posture_correction_jacket.Main_menuActivity.rightPress;
+
 import static com.example.posture_correction_jacket.Main_menuActivity.debouncing_target;
 import static com.example.posture_correction_jacket.Main_menuActivity.n_BagMode;
 import static com.example.posture_correction_jacket.Main_menuActivity.n_BagMode_debouncing;
-import static com.example.posture_correction_jacket.Main_menuActivity.isUserPutOn;
-import static com.example.posture_correction_jacket.Main_menuActivity.isUserRunning;
+import static com.example.posture_correction_jacket.Main_menuActivity.targetBagMode;
 
-import static com.example.posture_correction_jacket.Main_menuActivity.leftPress;
-import static com.example.posture_correction_jacket.Main_menuActivity.rightPress;
+
 import static com.example.posture_correction_jacket.Main_menuActivity.leftAngle;
 import static com.example.posture_correction_jacket.Main_menuActivity.rightAngle;
-import static com.example.posture_correction_jacket.Main_menuActivity.targetBagMode;
+
+
+
+import static com.example.posture_correction_jacket.Main_menuActivity.isUserPutOn;
+
 
 class Check {
 
     final static int pressure_threshold = 200; //압력 임계치
     final static int debouncing_limit = 50; //오랜 시간이 지나 값이 고정될 수 있도록 설정합니다.
+    private static int const1;
+    private static int const2;
 
 
     static void CheckBagState() {
@@ -43,10 +50,16 @@ class Check {
         }
     }
 
-    static void CheckIsPutOnState(){
+    static void CheckUserState(){
+        const1 = 20;
+        const2 = -20;
+        if (leftAngle > const1 || leftAngle < const2 || rightAngle > const1 || rightAngle < const2){ //센서값이 비정상적일때
+            isUserPutOn = false;
+        }
+        else if(leftAngle < const1 && leftAngle > const2 && rightAngle < const1 && rightAngle >const2){
+            isUserPutOn = true;
+        }
 
-        //TODO menu엑티비티에 리스트를 만들어서 시간-데이터 식으로 만들어서 상태를 비교하는 식으로 만들어야 하나...
-        // 아니면 최근 데이터 받은거 10개를 기준으로 상태 판별하는 식 만들어도 좋을듯
 
     }
 

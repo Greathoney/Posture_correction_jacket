@@ -29,7 +29,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import static com.example.posture_correction_jacket.Check.CheckBagState;
-import static com.example.posture_correction_jacket.Check.CheckIsPutOnState;
+import static com.example.posture_correction_jacket.Check.CheckUserState;
 
 
 public class Main_menuActivity extends AppCompatActivity {
@@ -37,6 +37,7 @@ public class Main_menuActivity extends AppCompatActivity {
     Button menu1;
     Button menu2;
     Button menu3;
+    Button menu4;
     Button help1;
     Button help2;
     Button help3;
@@ -70,13 +71,11 @@ public class Main_menuActivity extends AppCompatActivity {
     static int targetBagMode = 0; //측정된 가방 모드 0 가방 들지 않음 1 왼쪽 한끈 가방 듬 2 오른쪽 한끈 가방 듬 3 양쪽 책가방 듬
     static int debouncing_target = 0; //일정시간 지나서 오래 지속되면 바뀔 가방 모드를 지정합니다.
 
-    static boolean isUserPutOn = false; //사용자가 자세교정 자켓을 착용했는지 확인합니다. true이어야 작동합니다.
-    static boolean isUserRunning = false; //사용자가 달리고 있는지 확인합니다. true가 되면 좌우 자세가 치우쳐도 불안정한 자세라고 인정하지 않습니다.
+    static boolean isUserPutOn = true; //사용자가 자세교정 자켓을 착용했는지 확인합니다. true이어야 작동합니다.
 
     static boolean switchVal1;  // 실시간으로 데이터를 수집합니다.
     static boolean switchVal2; // 기울어짐이 오래 지속되었을 때 알림 띄우기
     static boolean switchVal3; // 심하게 기울어졌을때 즉시 알림 띄우기
-
 
 
     @Override
@@ -88,6 +87,7 @@ public class Main_menuActivity extends AppCompatActivity {
         menu1 = findViewById(R.id.menu1);
         menu2 = findViewById(R.id.menu2);
         menu3 = findViewById(R.id.menu3);
+        menu4 = findViewById(R.id.menu4);
         help1 = findViewById(R.id.help1);
         help2 = findViewById(R.id.help2);
         help3 = findViewById(R.id.help3);
@@ -119,6 +119,8 @@ public class Main_menuActivity extends AppCompatActivity {
             switchVal3 = false;
         }
 
+        textView.setText("옵션 저장 값 각각: " + switchVal1 + switchVal2 + switchVal3);
+
 
         menu1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,10 +140,20 @@ public class Main_menuActivity extends AppCompatActivity {
             }
         });
 
+
         menu3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Main_menuActivity.this, Menu3_Activity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        menu4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Main_menuActivity.this, Menu4_Activity.class);
                 startActivity(intent);
             }
         });
@@ -175,10 +187,10 @@ public class Main_menuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         help4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // 레이아웃 및 액티비티를 전환하기 위한 코드
                 Intent intent = new Intent(Main_menuActivity.this, Help4_Activity.class);
                 startActivity(intent);
@@ -225,7 +237,6 @@ public class Main_menuActivity extends AppCompatActivity {
 
             e.printStackTrace();
 
-
         }
     }
 
@@ -265,42 +276,21 @@ public class Main_menuActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             setGlobalSensorValues(text);
+                                            //시간 - SensorValue으로 하여 데이터베이스에 저장
+                                            //
+
+
                                             if (switchVal1){
-
                                                 CheckBagState();  //변하는 변수는 n_BagMode
-                                                if (n_BagMode==1){
-                                                    //왼쪽에 가방무게가 실림을 표시
-                                                }
-                                                else if (n_BagMode==2){
-                                                    //오른쪽에 가방무게가 실림을 표시
+                                                CheckUserState(); //변하는 변수는  isUserPutOn. isUserRunning
 
-                                                }
-                                                else if(n_BagMode==3){
-                                                    //양쪽에 가방무게가 실림을 표시, 가방의 좌우벨런스가 잘 맞는지 확인해줘야함.
+                                                if (isUserPutOn){
+                                                    //TODO 받은 데이터를 저장하고 상황에 맞게 처리할 수 있어야 함.
+                                                    // 필요하면 알람을 울릴 수 있게 설정
                                                 }
 
-
-                                                CheckIsPutOnState(); //변하는 변수는  isUserPutOn. isUserRunning
-                                                if (!isUserPutOn && !isUserRunning){
-                                                    //받은 데이터를 저장하고 상황에 맞게 처리할 수 있어야 함.
-                                                    //필요하면 알람을 울릴 수 있게 설정
-                                                }
 
                                             }
-
-//                                             텍스트 뷰에 출력
-//                                            textViewReceive.setText("");
-//                                            textViewReceive.append(((int)text.charAt(0)) + "");
-//
-//                                            if ((int)text.charAt(0) > 50){
-//                                                createNotification();
-//                                            }
-//                                            else{
-//                                                removeNotification();
-//                                            }
-
-//                                            Log.d(this.getClass().getName(),text);
-
 
                                         }
                                     });

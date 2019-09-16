@@ -6,7 +6,7 @@
     <string name="pairing_button_msg">페어링하기</string>
     <string name="main_menu_msg">메인 메뉴</string>
     <string name="menu1_msg">실시간 알림 설정</string>
-    <string name="menu2_msg">가방 벨런스 조절</string>
+    <string name="menu2_msg">가방 끈 길이 조절</string>
     <string name="menu3_msg">평소 나의 좌우 벨런스</string>
     <string name="sensor_state_msg">현재 센서가 가리키는 값</string>
     <string name="menu4_msg">센서 영점 조절 및 현재 센서값 확인</string>
