@@ -13,6 +13,11 @@ import static com.example.posture_correction_jacket.Main_menuActivity.switchVal1
 import static com.example.posture_correction_jacket.Main_menuActivity.switchVal2;
 import static com.example.posture_correction_jacket.Main_menuActivity.switchVal3;
 
+import static com.example.posture_correction_jacket.Main_menuActivity.leftPress;
+import static com.example.posture_correction_jacket.Main_menuActivity.rightPress;
+import static com.example.posture_correction_jacket.Main_menuActivity.leftAngle;
+import static com.example.posture_correction_jacket.Main_menuActivity.rightAngle;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -135,7 +140,9 @@ public class Menu1_Activity extends AppCompatActivity {
         editor.commit();
     }
 
-
+    private int getDampedValue(int originalValue, double dampingRate) {
+        return
+    }
 
 
 }
