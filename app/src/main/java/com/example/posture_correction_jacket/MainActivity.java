@@ -13,12 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+
+import static com.example.posture_correction_jacket.Main_menuActivity.bluetoothName;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothAdapter bluetoothAdapter; // 블루투스 어댑터
     private Set<BluetoothDevice> devices; // 블루투스 디바이스 데이터 셋
     private int pairedDeviceCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             // 모든 디바이스의 이름을 리스트에 추가
             for (BluetoothDevice bluetoothDevice : devices) {
                 //TODO 필요한 것만 띄우기
-                if (bluetoothDevice.getName().equals("BT04-A")){
+                if (bluetoothDevice.getName().equals(bluetoothName)){
                     list.add(bluetoothDevice.getName());  // 9/7 오후7시 리스트에서 특정한 센서만 리스트에 띄우토록 수정했습니다.
                 }
             }

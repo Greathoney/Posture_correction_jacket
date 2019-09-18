@@ -34,6 +34,8 @@ import java.util.UUID;
 
 public class Main_menuActivity extends AppCompatActivity {
 
+    final static String bluetoothName = "BT04-A";
+
     Button menu1;
     Button menu2;
     Button menu3;
@@ -59,7 +61,7 @@ public class Main_menuActivity extends AppCompatActivity {
     static int leftAngle;
     static int rightAngle;
 
-    static int beforeLeftAngle_data = 0;
+    static int beforeLeftAngle_data = 0; //이전 데이터 값, 옷이 가만히 있는지 확인합니다.
     static int beforeRightAngle_data = 0;
     static int beforeCount = 0;
 
@@ -78,13 +80,14 @@ public class Main_menuActivity extends AppCompatActivity {
 
     final static double dampingRate = 0.9;
 
-    private int leftAngleStandard = 5;
-    private int rightAngleStandard = 5;
+    private int leftAngleStandard = 5; //왼쪽 기울기의 표준치를 나타냅니다.
+    private int rightAngleStandard = 5; //오른쪽 기울기의 표준치를 나타냅니다.
 
-    private int AlertDelay;
-    private int AlertValue;
+    private int AlertDelay; //지속성을 확인합니다. 1초씩 늘어납니다.
+    private int AlertValue; //한 가지 모드가 지속되는지를 확인합니다. 1은 왼쪽 경고, 2는 오른쪽 경고를 나타냅니다.
 
     Button testButton;
+    Button testButton2;
 
 
     @Override
@@ -104,6 +107,7 @@ public class Main_menuActivity extends AppCompatActivity {
         warning_= findViewById(R.id.warning_);
 
         testButton = findViewById(R.id.testButton);
+        testButton2 = findViewById(R.id.testButton2);
 
 
         SharedPreferences getSwitchData = getSharedPreferences("switchFile", MODE_PRIVATE);
@@ -200,10 +204,18 @@ public class Main_menuActivity extends AppCompatActivity {
                 gotoDataBase();
             }
         });
+        testButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SQLiteDatabase db = MemoDbHelper.getInstance(Main_menuActivity.this).getWritableDatabase();;
+                db.execSQL(String.format("DELETE FROM memo"));
+
+            }
+        });
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter(); // 블루투스 어댑터를 디폴트 어댑터로 설정
 
-        connectDevice("BT04-A");
+        connectDevice(bluetoothName);
     }
 
 
@@ -288,74 +300,65 @@ public class Main_menuActivity extends AppCompatActivity {
                                                 if (isUserPutOn()) {
                                                     int angleBalance = AngleBalance();
 
-                                                    if (angleBalance == -3){ //자세가 왼쪽으로 기울어짐
-                                                        if (getAlertValue() == 1) { //알람기조를 유지해갔는가
-                                                            if (getAlertDelay() == 60) {
-                                                                createNotification("자세가 많이 흐트려졌습니다.", "왼쪽으로 많이 기울여졌습니다. 바로 앉으시길 권장드립니다.", 1);
+                                                    if (switchVal2) {
+                                                        if (angleBalance == -3) { //자세가 왼쪽으로 기울어짐
+                                                            if (getAlertValue() == 1) { //알람기조를 유지해갔는가
+                                                                if (getAlertDelay() == 60) {
+                                                                    createNotification("자세가 많이 흐트려졌습니다.", "왼쪽으로 많이 기울여졌습니다. 바로 앉으시길 권장드립니다.", 1);
+                                                                } else {
+                                                                    setAlertDelay(AlertDelay++);
+                                                                }
                                                             } else {
-                                                                setAlertDelay(AlertDelay++);
+                                                                setAlertValue(1);
+                                                                setAlertDelay(0);
                                                             }
-                                                        }
-                                                        else{
-                                                            setAlertValue(1);
-                                                            setAlertDelay(0);
+                                                        } else if (angleBalance == 3) { //자세가 오른쪽으로 기울어짐
+                                                            if (getAlertValue() == 2) { //알람기조를 유지해갔는가
+                                                                if (getAlertDelay() == 60) {
+                                                                    createNotification("자세가 많이 흐트려졌습니다.", "오른쪽으로 많이 기울여졌습니다. 바로 앉으시길 권장드립니다.", 1);
+                                                                } else {
+                                                                    setAlertDelay(AlertDelay++);
+                                                                }
+                                                            } else {
+                                                                setAlertValue(2);
+                                                                setAlertDelay(0);
+                                                            }
                                                         }
                                                     }
 
-                                                    else if (angleBalance == 3){ //자세가 오른쪽으로 기울어짐
-                                                        if (getAlertValue() == 2) { //알람기조를 유지해갔는가
-                                                            if (getAlertDelay() == 60) {
-                                                                createNotification("자세가 많이 흐트려졌습니다.", "오른쪽으로 많이 기울여졌습니다. 바로 앉으시길 권장드립니다.", 1);
+                                                    else if (switchVal3) {
+                                                        if (angleBalance == -1 || angleBalance == -2) { //자세가 왼쪽으로 기울어짐
+                                                            if (getAlertValue() == 1) { //알람기조를 유지해갔는가
+                                                                if (getAlertDelay() == 300) {
+                                                                    createNotification("자세가 지속적으로 흐트려졌습니다.", "왼쪽으로 기울여졌으니 바로 앉으시길 권장드립니다.", 1);
+                                                                } else {
+                                                                    setAlertDelay(AlertDelay++);
+                                                                }
                                                             } else {
-                                                                setAlertDelay(AlertDelay++);
+                                                                setAlertValue(1);
+                                                                setAlertDelay(0);
                                                             }
-                                                        }
-                                                        else{
-                                                            setAlertValue(2);
-                                                            setAlertDelay(0);
-                                                        }
-                                                    }
-
-
-                                                   else if (angleBalance == -1 || angleBalance == -2){ //자세가 왼쪽으로 기울어짐
-                                                        if (getAlertValue() == 1) { //알람기조를 유지해갔는가
-                                                            if (getAlertDelay() == 300) {
-                                                                createNotification("자세가 지속적으로 흐트려졌습니다.", "왼쪽으로 기울여졌으니 바로 앉으시길 권장드립니다." , 1);
+                                                        } else if (angleBalance == 13 || angleBalance == 2) { //자세가 오른쪽으로 기울어짐
+                                                            if (getAlertValue() == 2) { //알람기조를 유지해갔는가
+                                                                if (getAlertDelay() == 300) {
+                                                                    createNotification("자세가 지속적으로 흐트려졌습니다.", "오른쪽으로 기울여졌으니 바로 앉으시길 권장드립니다.", 1);
+                                                                } else {
+                                                                    setAlertDelay(AlertDelay++);
+                                                                }
                                                             } else {
-                                                                setAlertDelay(AlertDelay++);
+                                                                setAlertValue(2);
+                                                                setAlertDelay(0);
                                                             }
-                                                        }
-                                                        else{
-                                                            setAlertValue(1);
-                                                            setAlertDelay(0);
-                                                        }
-                                                    }
-
-                                                    else if (angleBalance == 13 || angleBalance == 2){ //자세가 오른쪽으로 기울어짐
-                                                        if (getAlertValue() == 2) { //알람기조를 유지해갔는가
-                                                            if (getAlertDelay() == 300) {
-                                                                createNotification("자세가 지속적으로 흐트려졌습니다.", "오른쪽으로 기울여졌으니 바로 앉으시길 권장드립니다." , 1);
+                                                        } else if (angleBalance == 0) { //자세가 왼쪽으로 기울어짐
+                                                            if (getAlertValue() == 0) { //알람기조를 유지해갔는가
+                                                                if (getAlertDelay() == 0) {
+                                                                    removeNotification(1);
+                                                                    setAlertDelay(AlertDelay++);
+                                                                }
                                                             } else {
-                                                                setAlertDelay(AlertDelay++);
+                                                                setAlertValue(0);
+                                                                setAlertDelay(0);
                                                             }
-                                                        }
-                                                        else{
-                                                            setAlertValue(2);
-                                                            setAlertDelay(0);
-                                                        }
-                                                    }
-
-                                                    else if (angleBalance == 0){ //자세가 왼쪽으로 기울어짐
-                                                        if (getAlertValue() == 0) { //알람기조를 유지해갔는가
-                                                            if (getAlertDelay() == 0) {
-                                                                removeNotification(1);
-                                                                setAlertDelay(AlertDelay++);
-                                                            } else {
-                                                            }
-                                                        }
-                                                        else{
-                                                            setAlertValue(0);
-                                                            setAlertDelay(0);
                                                         }
                                                     }
 
@@ -462,8 +465,8 @@ public class Main_menuActivity extends AppCompatActivity {
         ContentValues contentValues = new ContentValues();
         // 여기에 데이터베이스에 넘길 값을 입력해줍니다.
 
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_DATE, new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date()));
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_TIME, new java.text.SimpleDateFormat("HHmmss").format(new java.util.Date()));
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_DATE, new java.text.SimpleDateFormat("yyyy년 MM월 dd일 ").format(new java.util.Date()));
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_TIME, new java.text.SimpleDateFormat("HH시 mm분").format(new java.util.Date()));
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, Integer.toString(AngleBalance()));
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, Double.toString(LP_damped));
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, Double.toString(RP_damped));

@@ -22,6 +22,7 @@ public class MemoDbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + MemoContract.MemoEntry.TABLE_NAME;
 
+
     public static MemoDbHelper getInstance(Context context){
         if (sInstance == null){
             sInstance = new MemoDbHelper(context);
@@ -43,6 +44,6 @@ public class MemoDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(SQL_DELETE_ENTRIES);
         onCreate(sqLiteDatabase);
-
     }
+
 }
