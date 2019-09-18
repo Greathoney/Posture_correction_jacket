@@ -1,19 +1,23 @@
 package com.example.posture_correction_jacket;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -28,6 +32,7 @@ public class Menu4_Activity extends AppCompatActivity {
     TextView year_month;
     ListView dataList;
     private MemoAdapter mAdapter;
+    Date pickedDate;
 
 
     @Override
@@ -44,24 +49,34 @@ public class Menu4_Activity extends AppCompatActivity {
         // Use constants provided by Java Calendar class
         compactCalendarView.setFirstDayOfWeek(Calendar.SUNDAY);
 
+
+        final Date date = new Date();
+        setPickedDate(date);
+        Cursor cursor = getMemoCursor(date);
+        mAdapter = new MemoAdapter(Menu4_Activity.this, cursor);
+        dataList.setAdapter(mAdapter);
+
+
+
+
 //        // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
 //        Event ev1 = new Event(Color.RED, 1568473200000L, "Some extra data that I want to store.");
-//        compactCalendarView.addEvent(ev1);
+        compactCalendarView.addEvent(new Event(Color.RED, 1568473200000L, "Some extra data that I want to store."));
+
 //
 //
 //        // Added event 2 GMT: Sun, 07 Jun 2015 19:10:51 GMT
 //        Event ev2 = new Event(Color.GREEN, 1568386800000L);
 //        compactCalendarView.addEvent(ev2);
 
+        Cursor maxCursor = getMaxDateCursor();
+//        maxCursor.get
 
-        Cursor cursor = getMemoCursor();
-        mAdapter = new MemoAdapter(this, cursor);
-        dataList.setAdapter(mAdapter);
 
         // Query for events on Sun, 07 Jun 2015 GMT.
         // Time is not relevant when querying for events, since events are returned by day.
         // So you can pass in any arbitary DateTime and you will receive all events for that day.
-        List<Event> events = compactCalendarView.getEvents(1433701251000L); // can also take a Date object
+//        List<Event> events = compactCalendarView.getEvents(1433701251000L); // can also take a Date object
 
         // events has size 2 with the 2 events inserted previously
 //        Log.d(TAG, "Events: " + events);
@@ -72,7 +87,13 @@ public class Menu4_Activity extends AppCompatActivity {
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-                List<Event> events = compactCalendarView.getEvents(dateClicked);
+//                List<Event> events = compactCalendarView.getEvents(dateClicked);
+
+                Cursor cursor = getMemoCursor(dateClicked);
+                mAdapter = new MemoAdapter(Menu4_Activity.this, cursor);
+                dataList.setAdapter(mAdapter);
+
+                setPickedDate(dateClicked);
 
 //                Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
             }
@@ -83,13 +104,53 @@ public class Menu4_Activity extends AppCompatActivity {
 //                Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
             }
         });
+
+        dataList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                final long deleteId = l;
+                AlertDialog.Builder builder = new AlertDialog.Builder(Menu4_Activity.this);
+                builder.setTitle("데이터 삭제");
+                builder.setMessage("데이터를 삭제하시겠습니까?");
+                builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        SQLiteDatabase db = MemoDbHelper.getInstance(Menu4_Activity.this).getWritableDatabase();
+                        db.delete(MemoContract.MemoEntry.TABLE_NAME,
+                                MemoContract.MemoEntry._ID + " = " + deleteId, null);
+
+                        Cursor cursor = getMemoCursor(getPickedDate());
+                        mAdapter = new MemoAdapter(Menu4_Activity.this, cursor);
+                        dataList.setAdapter(mAdapter);
+                    }
+                });
+                builder.setNegativeButton("취소", null);
+                builder.show();
+                return true;
+            }
+        });
     }
 
-    private Cursor getMemoCursor() {
+    private Cursor getMemoCursor(Date dateClicked) {
+        MemoDbHelper dbHelper = MemoDbHelper.getInstance(this);
+        String checkString = "\'" + (dateClicked.getYear() + 1900) + "년 " + String.format("%02d", (dateClicked.getMonth() + 1)) + "월 " + String.format("%02d", (dateClicked.getDate())) + "일\'";
+
+        return dbHelper.getReadableDatabase()
+                .rawQuery("SELECT * from " + MemoContract.MemoEntry.TABLE_NAME +
+                        " WHERE " + MemoContract.MemoEntry.COLUMN_NAME_DATE + " = " + checkString +
+                        " ORDER BY " + MemoContract.MemoEntry._ID + " DESC", null);
+    }
+
+    private Cursor getMaxDateCursor(){
         MemoDbHelper dbHelper = MemoDbHelper.getInstance(this);
         return dbHelper.getReadableDatabase()
-                .query(MemoContract.MemoEntry.TABLE_NAME,
-                        null, null, null, null, null, MemoContract.MemoEntry._ID + " DESC");
+                .rawQuery("SELECT " + MemoContract.MemoEntry.COLUMN_NAME_DATE + " from " + MemoContract.MemoEntry.TABLE_NAME  + " ORDER BY " + MemoContract.MemoEntry.COLUMN_NAME_DATE + " DESC LIMIT 1", null);
+    }
+
+    private Cursor getMinDateCursor(){
+        MemoDbHelper dbHelper = MemoDbHelper.getInstance(this);
+        return dbHelper.getReadableDatabase()
+                .rawQuery("SELECT " + MemoContract.MemoEntry.COLUMN_NAME_DATE + " from " + MemoContract.MemoEntry.TABLE_NAME  + " ORDER BY " + MemoContract.MemoEntry.COLUMN_NAME_DATE + " LIMIT 1", null);
     }
 
     private static class MemoAdapter extends CursorAdapter {
@@ -110,9 +171,19 @@ public class Menu4_Activity extends AppCompatActivity {
             titleText.setText(cursor.getString(cursor.getColumnIndexOrThrow(MemoContract.MemoEntry.COLUMN_NAME_DATE)) + " ");
             titleText.append(cursor.getString(cursor.getColumnIndexOrThrow(MemoContract.MemoEntry.COLUMN_NAME_TIME)));
             TextView titleContent = view.findViewById(android.R.id.text2);
-            titleContent.setText("기울기 점수: " + cursor.getString(cursor.getColumnIndexOrThrow(MemoContract.MemoEntry.COLUMN_NAME_ANGLE)));
-
+            titleContent.setText("기울기 척도: " + cursor.getString(cursor.getColumnIndexOrThrow(MemoContract.MemoEntry.COLUMN_NAME_ANGLE)));
+            titleContent.append(",  좌 감압: " + cursor.getString(cursor.getColumnIndexOrThrow(MemoContract.MemoEntry.COLUMN_NAME_LEFTPRESSURE)));
+            titleContent.append(",  우 감압: " + cursor.getString(cursor.getColumnIndexOrThrow(MemoContract.MemoEntry.COLUMN_NAME_RIGHTPRESSURE)));
 
         }
     }
+
+    private void setPickedDate(Date date){
+        pickedDate = date;
+    }
+
+    private Date getPickedDate(){
+        return pickedDate;
+    }
+
 }

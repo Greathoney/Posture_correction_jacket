@@ -65,10 +65,10 @@ public class Main_menuActivity extends AppCompatActivity {
     static int beforeRightAngle_data = 0;
     static int beforeCount = 0;
 
-    private double LP_damped = 0;
-    private double RP_damped = 0;
-    private double LA_damped = 0;
-    private double RA_damped = 0;
+    private double LP_damped = 0.0;
+    private double RP_damped = 0.0;
+    private double LA_damped = 0.0;
+    private double RA_damped = 0.0;
 
     private long checkTime = System.currentTimeMillis();
 
@@ -465,7 +465,7 @@ public class Main_menuActivity extends AppCompatActivity {
         ContentValues contentValues = new ContentValues();
         // 여기에 데이터베이스에 넘길 값을 입력해줍니다.
 
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_DATE, new java.text.SimpleDateFormat("yyyy년 MM월 dd일 ").format(new java.util.Date()));
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_DATE, new java.text.SimpleDateFormat("yyyy년 MM월 dd일").format(new java.util.Date()));
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_TIME, new java.text.SimpleDateFormat("HH시 mm분").format(new java.util.Date()));
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, Integer.toString(AngleBalance()));
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, Double.toString(LP_damped));
