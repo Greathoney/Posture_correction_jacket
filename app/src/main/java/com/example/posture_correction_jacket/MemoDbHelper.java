@@ -10,18 +10,17 @@ public class MemoDbHelper extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     public static final String DB_NAME = "MEMO.db";
     public static final String SQL_CREATE_ENTRIES =
-            String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT)",
+            String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT)",
                     MemoContract.MemoEntry.TABLE_NAME,
                     MemoContract.MemoEntry._ID,
                     MemoContract.MemoEntry.COLUMN_NAME_DATE,
                     MemoContract.MemoEntry.COLUMN_NAME_TIME,
                     MemoContract.MemoEntry.COLUMN_NAME_ANGLE,
-                    MemoContract.MemoEntry.COLUMN_NAME_PRESSURE,
-                    MemoContract.MemoEntry.COLUMN_NAME_SUMMARY,
-                    MemoContract.MemoEntry.COLUMN_NAME_BAG);
+                    MemoContract.MemoEntry.COLUMN_NAME_LEFTPRESSURE,
+                    MemoContract.MemoEntry.COLUMN_NAME_RIGHTPRESSURE);
 
     private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS" + MemoContract.MemoEntry.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + MemoContract.MemoEntry.TABLE_NAME;
 
     public static MemoDbHelper getInstance(Context context){
         if (sInstance == null){

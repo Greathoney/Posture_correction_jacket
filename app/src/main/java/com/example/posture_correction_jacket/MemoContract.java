@@ -12,9 +12,8 @@ public class MemoContract {
         public static final String COLUMN_NAME_DATE = "date";
         public static final String COLUMN_NAME_TIME = "time";
         public static final String COLUMN_NAME_ANGLE = "angle";
-        public static final String COLUMN_NAME_PRESSURE = "pressure";
-        public static final String COLUMN_NAME_SUMMARY = "summary";
-        public static final String COLUMN_NAME_BAG = "bag";
+        public static final String COLUMN_NAME_LEFTPRESSURE = "leftPressure";
+        public static final String COLUMN_NAME_RIGHTPRESSURE = "rightPressure";
 
     }
 }

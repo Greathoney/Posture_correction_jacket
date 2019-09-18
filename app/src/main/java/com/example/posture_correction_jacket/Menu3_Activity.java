@@ -113,7 +113,7 @@ public class Menu3_Activity extends AppCompatActivity{
                         e.printStackTrace();
                     }
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(1000); //일단 1초로 모두 맞추어놓을게
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
