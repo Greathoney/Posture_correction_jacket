@@ -24,7 +24,7 @@ public class MemoDbHelper extends SQLiteOpenHelper {
 
 
     public static MemoDbHelper getInstance(Context context){
-        if (sInstance == null){
+        if (sInstance == null) {
             sInstance = new MemoDbHelper(context);
         }
         return sInstance;

@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             List<String> list = new ArrayList<>();
             // 모든 디바이스의 이름을 리스트에 추가
             for (BluetoothDevice bluetoothDevice : devices) {
-                //TODO 필요한 것만 띄우기
                 if (bluetoothDevice.getName().equals(bluetoothName)){
                     list.add(bluetoothDevice.getName());  // 9/7 오후7시 리스트에서 특정한 센서만 리스트에 띄우토록 수정했습니다.
                 }

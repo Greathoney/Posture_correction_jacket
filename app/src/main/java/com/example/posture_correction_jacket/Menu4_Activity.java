@@ -23,6 +23,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -69,8 +72,48 @@ public class Menu4_Activity extends AppCompatActivity {
 //        Event ev2 = new Event(Color.GREEN, 1568386800000L);
 //        compactCalendarView.addEvent(ev2);
 
-        Cursor maxCursor = getMaxDateCursor();
-//        maxCursor.get
+        SQLiteDatabase db = MemoDbHelper.getInstance(Menu4_Activity.this).getReadableDatabase();
+
+        Cursor cursor1 = db.rawQuery("SELECT * from " + MemoContract.MemoEntry.TABLE_NAME  + " ORDER BY " + MemoContract.MemoEntry.COLUMN_NAME_DATE + " DESC", null);
+        cursor1.moveToFirst();
+
+
+        String dateData;
+
+        int color;
+
+        int maxAngle = 0;
+        int minAngle = 0;
+
+        while (!cursor1.isAfterLast()) {
+            dateData = cursor1.getString(1);
+            maxAngle = 0;
+            minAngle = 0;
+
+            while (!cursor1.isAfterLast() && cursor1.getString(1).equals(dateData)){
+                if (maxAngle < Integer.parseInt(cursor1.getString(3))){
+                    maxAngle = Integer.parseInt(cursor1.getString(3));
+                }
+
+                else if (minAngle > Integer.parseInt(cursor1.getString(3))){
+                    minAngle = Integer.parseInt(cursor1.getString(3));
+                }
+
+                cursor1.moveToNext();
+            }
+
+            DateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
+            Date d = null;
+            try {
+                d = df.parse(dateData);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            compactCalendarView.addEvent(new Event(Color.rgb( 240 + 80 * minAngle, 240 - 80 * maxAngle + 80 * minAngle, 240 -80 * minAngle), d.getTime(), ""));
+        }
+
+
 
 
         // Query for events on Sun, 07 Jun 2015 GMT.
