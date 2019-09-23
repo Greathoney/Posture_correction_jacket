@@ -467,9 +467,9 @@ public class Main_menuActivity extends AppCompatActivity {
 
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_DATE, new java.text.SimpleDateFormat("yyyy년 MM월 dd일").format(new java.util.Date()));
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_TIME, new java.text.SimpleDateFormat("HH시 mm분").format(new java.util.Date()));
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, "-3");
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_LEFTPRESSURE, Double.toString(LP_damped));
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_RIGHTPRESSURE, Double.toString(RP_damped));
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, "-1"); //AngleBalance
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_LEFTPRESSURE, Double.toString(100.0)); //LP_damped
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_RIGHTPRESSURE, Double.toString(110.0)); //RP_damped
 
         SQLiteDatabase db = MemoDbHelper.getInstance(this).getWritableDatabase();
         db.insert(MemoContract.MemoEntry.TABLE_NAME,

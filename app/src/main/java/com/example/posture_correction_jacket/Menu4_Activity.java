@@ -64,7 +64,7 @@ public class Menu4_Activity extends AppCompatActivity {
 
 //        // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
 //        Event ev1 = new Event(Color.RED, 1568473200000L, "Some extra data that I want to store.");
-        compactCalendarView.addEvent(new Event(Color.RED, 1568473200000L, "Some extra data that I want to store."));
+//        compactCalendarView.addEvent(new Event(Color.RED, 1568473200000L, "Some extra data that I want to store."));
 
 //
 //
@@ -110,7 +110,22 @@ public class Menu4_Activity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            compactCalendarView.addEvent(new Event(Color.rgb( 240 + 80 * minAngle, 240 - 80 * maxAngle + 80 * minAngle, 240 -80 * minAngle), d.getTime(), ""));
+            compactCalendarView.addEvent(new Event(Color.rgb( 210 + 70 * minAngle, 210 - 35 * maxAngle + 35 * minAngle, 210 -70 * maxAngle), d.getTime(), ""));
+
+//            if(Double.parseDouble(cursor1.getString(4)) > 10 && Double.parseDouble(cursor1.getString(5)) > 10){
+//                Double sum = Double.parseDouble(cursor1.getString(4) + Double.parseDouble(cursor1.getString(5)));
+//                Double sub = Double.parseDouble(cursor1.getString(4) + Double.parseDouble(cursor1.getString(5)));
+//
+//                compactCalendarView.addEvent(new Event(Color.rgb(255 - (int)Math.min(Math.round(sum), 255) + (int)Math.max(Math.round(sub), 0), 255 - (int)Math.min(Math.round(sum), 255), 255 - (int)Math.min(Math.round(sum), 255) + (int)Math.min(Math.round(sub), 0)), d.getTime(), ""));
+//            }
+//
+//            else if (Double.parseDouble(cursor1.getString(4)) < 10 && Double.parseDouble(cursor1.getString(5)) > 10){
+//                compactCalendarView.addEvent(new Event(Color.rgb( 255, 0, 0), d.getTime(), ""));
+//            }
+//
+//            else if((Double.parseDouble(cursor1.getString(4)) > 10 && Double.parseDouble(cursor1.getString(5)) < 10)){
+//                compactCalendarView.addEvent(new Event(Color.rgb( 255, 0, 0), d.getTime(), ""));
+//            }
         }
 
 
