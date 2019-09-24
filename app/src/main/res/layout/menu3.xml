@@ -7,12 +7,12 @@
     tools:context=".Menu3_Activity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/setZero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:text="영점조절"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -24,8 +24,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/setZero"
         app:layout_constraintTop_toBottomOf="@+id/barchart2"
         tools:layout_editor_absoluteX="176dp" />
 

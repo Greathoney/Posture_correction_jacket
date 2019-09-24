@@ -80,8 +80,8 @@ public class Main_menuActivity extends AppCompatActivity {
 
     final static double dampingRate = 0.9;
 
-    private int leftAngleStandard = 5; //왼쪽 기울기의 표준치를 나타냅니다.
-    private int rightAngleStandard = 5; //오른쪽 기울기의 표준치를 나타냅니다.
+    static int leftAngleStandard = 0; //왼쪽 기울기의 표준치를 나타냅니다.
+    static int rightAngleStandard  = 0; //오른쪽 기울기의 표준치를 나타냅니다.
 
     private int AlertDelay; //지속성을 확인합니다. 1초씩 늘어납니다.
     private int AlertValue; //한 가지 모드가 지속되는지를 확인합니다. 1은 왼쪽 경고, 2는 오른쪽 경고를 나타냅니다.
@@ -297,7 +297,7 @@ public class Main_menuActivity extends AppCompatActivity {
                                                 setDampedValue();
 
                                                 //센서 값을 바탕으로 유효한 측정 상태인지 아닌지 판별합니다.
-                                                if (isUserPutOn()) {
+                                                if (true) {
                                                     int angleBalance = AngleBalance();
 
                                                     if (switchVal2) {
@@ -363,7 +363,7 @@ public class Main_menuActivity extends AppCompatActivity {
                                                     }
 
                                                     //특정 시각에 해당하면 데이터베이스에 값을 넘기도록 함
-                                                    if (getCheckTime() < System.currentTimeMillis() - 1800000) { //30분 간격으로 데이터베이스에 저장
+                                                    if (getCheckTime() < System.currentTimeMillis() - 10000) { //30분 간격으로 데이터베이스에 저장
                                                         gotoDataBase();
                                                         setCheckTime(System.currentTimeMillis());
                                                     }
@@ -440,11 +440,35 @@ public class Main_menuActivity extends AppCompatActivity {
         int val5 = -5;
         int val6 = -8;
 
+        if(leftState > val1){
+            return 3;
+        }
+        else if (leftState > val2){
+            return 2;
+        }
+        else if (leftState > val3){
+            return 1;
+        }
+
+        else if(leftState > val4){
+            return 0;
+        }
+
+        else if (leftState > val5){
+            return -1;
+        }
+
+        else if (leftState > val6){
+            return -2;
+        }
+        else {
+            return -3;
+        }
+
         //2번 조건에 해당하는 것
 
         //센서 값을 보고 알고리즘을 만들어내겠음
         //진짜 값을 안보면 힘들다
-        return 0;
     }
 
     private void setGlobalSensorValues(String str) {
@@ -467,9 +491,9 @@ public class Main_menuActivity extends AppCompatActivity {
 
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_DATE, new java.text.SimpleDateFormat("yyyy년 MM월 dd일").format(new java.util.Date()));
         contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_TIME, new java.text.SimpleDateFormat("HH시 mm분").format(new java.util.Date()));
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, "-1"); //AngleBalance
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_LEFTPRESSURE, Double.toString(100.0)); //LP_damped
-        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_RIGHTPRESSURE, Double.toString(110.0)); //RP_damped
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ANGLE, AngleBalance()); //AngleBalance
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_LEFTPRESSURE, LP_damped); //LP_damped
+        contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_RIGHTPRESSURE, RP_damped); //RP_damped
 
         SQLiteDatabase db = MemoDbHelper.getInstance(this).getWritableDatabase();
         db.insert(MemoContract.MemoEntry.TABLE_NAME,

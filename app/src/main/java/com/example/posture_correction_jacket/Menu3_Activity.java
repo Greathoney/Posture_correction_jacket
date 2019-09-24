@@ -2,6 +2,8 @@ package com.example.posture_correction_jacket;
 
 import android.app.ActivityManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +25,9 @@ import static com.example.posture_correction_jacket.Main_menuActivity.rightPress
 import static com.example.posture_correction_jacket.Main_menuActivity.leftAngle;
 import static com.example.posture_correction_jacket.Main_menuActivity.rightAngle;
 
+import static com.example.posture_correction_jacket.Main_menuActivity.rightAngleStandard;
+import static com.example.posture_correction_jacket.Main_menuActivity.leftAngleStandard;
+
 
 
 public class Menu3_Activity extends AppCompatActivity{
@@ -32,6 +37,8 @@ public class Menu3_Activity extends AppCompatActivity{
     BarChart barChart2;
     private Thread workerThread = null;
 
+    Button setZero;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +47,7 @@ public class Menu3_Activity extends AppCompatActivity{
         checkData = findViewById(R.id.checkData);
         barChart1 = (BarChart) findViewById(R.id.barchart1);
         barChart2 = (BarChart) findViewById(R.id.barchart2);
+        setZero = findViewById(R.id.setZero);
 
         final Handler handler = new Handler();
         workerThread = new Thread(new Runnable() {
@@ -121,6 +129,14 @@ public class Menu3_Activity extends AppCompatActivity{
             }
         });
         workerThread.start();
+
+        setZero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rightAngleStandard = rightAngle;
+                leftAngleStandard = leftAngle;
+            }
+        });
     }
 
 
