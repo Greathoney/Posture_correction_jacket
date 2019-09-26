@@ -63,8 +63,8 @@ public class Menu3_Activity extends AppCompatActivity{
                                 entries1.add(new BarEntry(rightPress, 1));
 
                                 ArrayList<BarEntry> entries2 = new ArrayList<>();
-                                entries2.add(new BarEntry(leftAngle, 0));
-                                entries2.add(new BarEntry(rightAngle, 1));
+                                entries2.add(new BarEntry(leftAngle - leftAngleStandard, 0));
+                                entries2.add(new BarEntry(rightAngle - rightAngleStandard,  1));
 
                                 BarDataSet barDataSet1 = new BarDataSet(entries1, " ");
                                 BarDataSet barDataSet2 = new BarDataSet(entries2, " ");
@@ -74,8 +74,8 @@ public class Menu3_Activity extends AppCompatActivity{
                                 y1.setAxisMinValue(0);
 
                                 YAxis y2 = barChart2.getAxisLeft();
-                                y2.setAxisMaxValue(180);
-                                y2.setAxisMinValue(-180);
+                                y2.setAxisMaxValue(60);
+                                y2.setAxisMinValue(-60);
 
                                 ArrayList<String> labels1 = new ArrayList<>();
                                 labels1.add("LP");

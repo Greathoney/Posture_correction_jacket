@@ -86,29 +86,29 @@ public class MainActivity extends AppCompatActivity {
     public void selectBluetoothDevice() {
 
 
-        // 이미 페어링 되어있는 블루투스 기기를 찾습니다.
-        devices = bluetoothAdapter.getBondedDevices();
-        // 페어링 된 디바이스의 크기를 저장
-        pairedDeviceCount = devices.size();
-        // 페어링 되어있는 장치가 없는 경우
-        if (pairedDeviceCount == 0) {
-            // 페어링을 하기위한 함수 호출
-        }
-        // 페어링 되어있는 장치가 있는 경우
-        else {
-            // 디바이스를 선택하기 위한 다이얼로그 생성
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("페어링 되어있는 자세교정자켓 목록");
-            // 페어링 된 각각의 디바이스의 이름과 주소를 저장
-            List<String> list = new ArrayList<>();
-            // 모든 디바이스의 이름을 리스트에 추가
-            for (BluetoothDevice bluetoothDevice : devices) {
-                if (bluetoothDevice.getName().equals(bluetoothName)){
-                    list.add(bluetoothDevice.getName());  // 9/7 오후7시 리스트에서 특정한 센서만 리스트에 띄우토록 수정했습니다.
-                }
+            // 이미 페어링 되어있는 블루투스 기기를 찾습니다.
+            devices = bluetoothAdapter.getBondedDevices();
+            // 페어링 된 디바이스의 크기를 저장
+            pairedDeviceCount = devices.size();
+            // 페어링 되어있는 장치가 없는 경우
+            if (pairedDeviceCount == 0) {
+                // 페어링을 하기위한 함수 호출
             }
+            // 페어링 되어있는 장치가 있는 경우
+            else {
+                // 디바이스를 선택하기 위한 다이얼로그 생성
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("페어링 되어있는 자세교정자켓 목록");
+                // 페어링 된 각각의 디바이스의 이름과 주소를 저장
+                List<String> list = new ArrayList<>();
+                // 모든 디바이스의 이름을 리스트에 추가
+                for (BluetoothDevice bluetoothDevice : devices) {
+                    if (bluetoothDevice.getName().equals(bluetoothName)){
+                        list.add(bluetoothDevice.getName());  // 9/7 오후7시 리스트에서 특정한 센서만 리스트에 띄우토록 수정했습니다.
+                    }
+                }
 
-            // List를 CharSequence 배열로 변경
+                // List를 CharSequence 배열로 변경
             final CharSequence[] charSequences = list.toArray(new CharSequence[list.size()]);
             list.toArray(new CharSequence[list.size()]);
 
