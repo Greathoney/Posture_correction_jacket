@@ -24,3 +24,31 @@
 오늘 나의 자세가 어땠는지 월별로 확인할 수 있습니다. 어제와 다른 오늘의 하루 어떤지 확인해보는 것은 어떤가요??
 
 자세교정 자켓을 입어서 나의 자세 현황을 알아보세요!
+
+### 코드
+주요 코드가 수정된 부분은 다음과 같습니다.
+
+-	Posture_Correction_Jacket/app/src/main/java/com.example.posture_correction_jacket
+    MainActivity.java
+    MainMenuActivity.java
+    Menu1Activity.java
+    Menu2Activity.java
+    Menu3Activity.java
+    Menu4Activity.java
+    Help1Activity.java
+    Help2Activity.java
+    Help3Activity.java
+    Help4Activity.java
+    MemoContract.java
+   MemoDbHelper.java
+-	Posture_Correction_Jacket/app/src/main/res/layout
+    activity_main.xml
+    main_menu.xml
+    help1.xml
+    help2.xml
+    help3.xml
+    help4.xml
+    menu1.xml
+    menu2.xml
+    menu3.xml
+    menu4.xml
