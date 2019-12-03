@@ -1,5 +1,5 @@
 # 자세 교정 자켓 / Posture_correction_jacket
-
+## 어플리케이션(Application)을 주제로 만들어졌습니다.
 
 자세 교정 자켓을 효과적으로 사용하기 위해 어플리케이션을 만들었습니다.
 
@@ -25,30 +25,58 @@
 
 자세교정 자켓을 입어서 나의 자세 현황을 알아보세요!
 
+### 실제 사용법
+실제 사용법은 다음과 같습니다.
+
 ### 코드
-주요 코드가 수정된 부분은 다음과 같습니다.
+안드로이드 스튜디오에서 기본적으로 만들어진 프로젝트에서 코드가 수정된 주요 부분은 다음과 같습니다.
 
 -	Posture_Correction_Jacket/app/src/main/java/com.example.posture_correction_jacket
-    MainActivity.java
-    MainMenuActivity.java
-    Menu1Activity.java
-    Menu2Activity.java
-    Menu3Activity.java
-    Menu4Activity.java
-    Help1Activity.java
-    Help2Activity.java
-    Help3Activity.java
-    Help4Activity.java
-    MemoContract.java
-   MemoDbHelper.java
+
+MainActivity.java
+
+MainMenuActivity.java
+
+Menu1Activity.java
+
+Menu2Activity.java
+
+Menu3Activity.java
+
+Menu4Activity.java
+
+Help1Activity.java
+
+Help2Activity.java
+
+Help3Activity.java
+
+Help4Activity.java
+
+MemoContract.java
+
+MemoDbHelper.java
+
+--- 
+
 -	Posture_Correction_Jacket/app/src/main/res/layout
-    activity_main.xml
-    main_menu.xml
-    help1.xml
-    help2.xml
-    help3.xml
-    help4.xml
-    menu1.xml
-    menu2.xml
-    menu3.xml
-    menu4.xml
+
+activity_main.xml
+
+main_menu.xml
+
+help1.xml
+
+help2.xml
+
+help3.xml
+
+help4.xml
+
+menu1.xml
+
+menu2.xml
+
+menu3.xml
+
+menu4.xml
